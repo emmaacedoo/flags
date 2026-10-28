@@ -1,0 +1,1010 @@
+---
+title: "🌍 FUN WITH FLAGS!"
+subtitle: "Explore the world, one flag at a time."
+format:
+  html:
+    theme: darkly
+    page-layout: full
+    toc: false
+    code-tools: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{=html}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg-deep: #0b0418;
+    --bg-card: rgba(24, 12, 48, 0.85);
+    --bg-card-hover: rgba(36, 18, 72, 0.95);
+    --neon-pink: #ff2a85;
+    --electric-blue: #00e5ff;
+    --neon-green: #00f59b;
+    --neon-yellow: #ffe600;
+    --text-main: #f8f7ff;
+    --text-muted: #b8aed2;
+    --border-glow: rgba(255, 42, 133, 0.35);
+  }
+
+  body {
+    background: radial-gradient(circle at 15% 10%, #240b4c 0%, #0b0418 45%, #06020e 100%) !important;
+    color: var(--text-main) !important;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  }
+
+  /* Hide default Quarto title block so our custom Hero shines */
+  #title-block-header {
+    display: none !important;
+  }
+
+  .hero-banner {
+    position: relative;
+    padding: 3.2rem 2rem;
+    margin: 1rem 0 2.5rem 0;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(255,42,133,0.18) 0%, rgba(0,229,255,0.14) 50%, rgba(0,245,155,0.16) 100%),
+                rgba(19, 8, 38, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), inset 0 0 40px rgba(255, 42, 133, 0.12);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue));
+    color: #0b0418;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.6rem 0;
+    background: linear-gradient(90deg, #ffffff 0%, #ff7eb6 35%, #00e5ff 70%, #00f59b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .nav-pills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: center;
+    margin-top: 1.2rem;
+  }
+
+  .nav-pill-link {
+    text-decoration: none;
+    padding: 0.55rem 1.15rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text-main) !important;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: all 0.2s ease;
+  }
+
+  .nav-pill-link:hover {
+    background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue));
+    color: #090314 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 42, 133, 0.35);
+  }
+
+  .section-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 24px;
+    padding: 2rem;
+    margin-bottom: 2.2rem;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .flag-showcase {
+    display: grid;
+    grid-template-columns: minmax(280px, 1.1fr) minmax(280px, 1fr);
+    gap: 2rem;
+    align-items: center;
+    background: rgba(11, 4, 24, 0.65);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: 22px;
+    padding: 1.8rem;
+    margin-top: 1.2rem;
+  }
+
+  @media (max-width: 768px) {
+    .flag-showcase {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .flag-img-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), rgba(0,0,0,0.4));
+    border-radius: 18px;
+    padding: 1.4rem;
+    min-height: 240px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .flag-img-frame img {
+    max-width: 100%;
+    max-height: 240px;
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65);
+    transition: transform 0.3s ease;
+  }
+
+  .flag-img-frame img:hover {
+    transform: scale(1.03);
+  }
+
+  .badge-tag {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .badge-region {
+    background: rgba(0, 229, 255, 0.16);
+    color: var(--electric-blue);
+    border: 1px solid rgba(0, 229, 255, 0.4);
+  }
+
+  .badge-code {
+    background: rgba(255, 42, 133, 0.16);
+    color: #ff6b9d;
+    border: 1px solid rgba(255, 42, 133, 0.4);
+  }
+
+  .btn-neon {
+    cursor: pointer;
+    padding: 0.65rem 1.3rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    background: linear-gradient(90deg, var(--neon-pink), #9b5de5);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(255, 42, 133, 0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(255, 42, 133, 0.55);
+  }
+
+  .btn-electric {
+    cursor: pointer;
+    padding: 0.65rem 1.3rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    background: linear-gradient(90deg, var(--electric-blue), var(--neon-green));
+    color: #080212;
+    box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .btn-electric:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0, 245, 155, 0.5);
+  }
+
+  .match-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.15rem;
+    margin-top: 0.8rem;
+  }
+
+  .mini-flag-card {
+    background: rgba(14, 6, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 1.1rem;
+    text-align: center;
+    transition: all 0.22s ease;
+  }
+
+  .mini-flag-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--electric-blue);
+    box-shadow: 0 10px 25px rgba(0, 229, 255, 0.2);
+  }
+
+  .mini-flag-card img {
+    height: 92px;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  }
+
+  .sim-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .sim-high {
+    background: rgba(0, 245, 155, 0.18);
+    color: var(--neon-green);
+    border: 1px solid rgba(0, 245, 155, 0.45);
+  }
+
+  .sim-low {
+    background: rgba(255, 42, 133, 0.18);
+    color: #ff6b9d;
+    border: 1px solid rgba(255, 42, 133, 0.45);
+  }
+
+  .quiz-option {
+    cursor: pointer;
+    padding: 0.9rem 1.2rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: left;
+    transition: all 0.18s ease;
+    width: 100%;
+  }
+
+  .quiz-option:hover:not(:disabled) {
+    background: rgba(0, 229, 255, 0.18);
+    border-color: var(--electric-blue);
+    transform: translateX(4px);
+  }
+
+  .quiz-option.correct {
+    background: rgba(0, 245, 155, 0.25) !important;
+    border-color: var(--neon-green) !important;
+    color: #fff !important;
+  }
+
+  .quiz-option.wrong {
+    background: rgba(255, 42, 133, 0.28) !important;
+    border-color: var(--neon-pink) !important;
+    color: #fff !important;
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .kpi-box {
+    background: rgba(11, 4, 24, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 1.1rem;
+    text-align: center;
+  }
+
+  .kpi-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .color-bar-track {
+    width: 100%;
+    height: 22px;
+    border-radius: 999px;
+    overflow: hidden;
+    display: flex;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin: 0.75rem 0 1rem 0;
+  }
+
+  /* Style Observable Inputs for dark neon look */
+  form[class*="oi-"] {
+    color: var(--text-main) !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+  form[class*="oi-"] select,
+  form[class*="oi-"] input[type="text"] {
+    background: #14082a !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(0, 229, 255, 0.4) !important;
+    border-radius: 10px !important;
+    padding: 0.4rem 0.7rem !important;
+  }
+</style>
+
+<div class="hero-banner">
+  <div class="hero-badge">✨ Interactive Data Science Experience ✨</div>
+  <h1 class="hero-title">🌍 FUN WITH FLAGS!</h1>
+  <p class="hero-subtitle"><em>Explore the world, one flag at a time.</em></p>
+  <div class="nav-pills-wrap">
+    <a class="nav-pill-link" href="#sec-explorer">🔍 Flag Explorer</a>
+    <a class="nav-pill-link" href="#sec-matchmaker">💘 Flag Matchmaker</a>
+    <a class="nav-pill-link" href="#sec-game">🎮 Guess the Flag!</a>
+    <a class="nav-pill-link" href="#sec-stats">📊 Flag Statistics</a>
+    <a class="nav-pill-link" href="#sec-surprise">✨ Color Personality & Studio</a>
+    <a class="nav-pill-link" href="#sec-zip">📦 ZIP Dataset Inspection</a>
+  </div>
+</div>
+```
+
+```{ojs}
+//| output: false
+flagsData = [{"code":"ad","name":"Andorra","region":"Europe","aspect":1.43,"img":"flags/ad.png","colors":[{"name":"Red","pct":31.5,"hex":"#ef233c"},{"name":"Blue","pct":31.2,"hex":"#1d4ed8"},{"name":"Yellow","pct":27.2,"hex":"#facc15"},{"name":"Orange","pct":8.8,"hex":"#f97316"}],"swatches":["#180898","#d80838","#f8d808","#b89868"],"hist":[0.0,0.3125,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.3152,0.0,0.0,0.0442,0.0503,0.0,0.2635,0.0018,0.0]},{"code":"ae","name":"United Arab Emirates","region":"Asia","aspect":2.0,"img":"flags/ae.png","colors":[{"name":"Green","pct":25.5,"hex":"#10b981"},{"name":"Red","pct":25.0,"hex":"#ef233c"},{"name":"White","pct":24.0,"hex":"#f8f9fa"},{"name":"Black","pct":24.0,"hex":"#18181b"}],"swatches":["#c81828","#088838","#f8f8f8","#080808"],"hist":[0.24,0.0,0.0,0.24,0.0,0.0,0.0,0.0,0.0,0.0003,0.0,0.0,0.0,0.015,0.0,0.0,0.0147,0.0,0.25,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.24]},{"code":"af","name":"Afghanistan","region":"Asia","aspect":1.5,"img":"flags/af.png","colors":[{"name":"Green","pct":32.5,"hex":"#10b981"},{"name":"Black","pct":30.3,"hex":"#18181b"},{"name":"Red","pct":21.9,"hex":"#ef233c"},{"name":"Orange","pct":9.1,"hex":"#f97316"}],"swatches":["#080808","#087838","#d82818","#d85848"],"hist":[0.3105,0.0,0.0,0.3033,0.0075,0.0,0.0,0.0,0.0,0.0043,0.0,0.0,0.0035,0.026,0.0,0.0,0.0173,0.0022,0.1943,0.0,0.0,0.0275,0.0882,0.0,0.0,0.0022,0.0132]},{"code":"ag","name":"Antigua and Barbuda","region":"Americas","aspect":1.5,"img":"flags/ag.png","colors":[{"name":"Red","pct":49.0,"hex":"#ef233c"},{"name":"Black","pct":24.0,"hex":"#18181b"},{"name":"Blue","pct":10.3,"hex":"#1d4ed8"},{"name":"White","pct":7.0,"hex":"#f8f9fa"}],"swatches":["#c81828","#080808","#0878c8","#f8f8f8"],"hist":[0.253,0.0035,0.0,0.0,0.0025,0.097,0.0,0.0,0.0,0.0105,0.002,0.0,0.008,0.008,0.0,0.0,0.0,0.0075,0.487,0.0,0.0,0.0055,0.0055,0.0,0.0395,0.0,0.0705]},{"code":"ai","name":"Anguilla","region":"Americas","aspect":2.0,"img":"flags/ai.png","colors":[{"name":"Blue","pct":74.1,"hex":"#1d4ed8"},{"name":"White","pct":11.3,"hex":"#f8f9fa"},{"name":"Red","pct":9.0,"hex":"#ef233c"}],"swatches":["#082868","#c81828","#f8f8f8","#c82848"],"hist":[0.0,0.731,0.0,0.0,0.004,0.0005,0.0,0.0,0.0,0.0,0.0003,0.0,0.0,0.0112,0.0118,0.0,0.0,0.0155,0.0815,0.006,0.0,0.005,0.0077,0.0037,0.004,0.0075,0.1103]},{"code":"al","name":"Albania","region":"Europe","aspect":1.4,"img":"flags/al.png","colors":[{"name":"Red","pct":85.5,"hex":"#ef233c"},{"name":"Black","pct":7.5,"hex":"#18181b"},{"name":"Maroon","pct":7.0,"hex":"#9f1239"}],"swatches":["#f80808","#080808","#580808","#a80808"],"hist":[0.099,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0457,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.8552,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},{"code":"am","name":"Armenia","region":"Asia","aspect":2.0,"img":"flags/am.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"Blue","pct":32.0,"hex":"#1d4ed8"},{"name":"Yellow","pct":32.0,"hex":"#facc15"}],"swatches":["#d80818","#f8a808","#0838a8","#083898"],"hist":[0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0]},{"code":"ao","name":"Angola","region":"Africa","aspect":1.5,"img":"flags/ao.png","colors":[{"name":"Red","pct":47.9,"hex":"#ef233c"},{"name":"Black","pct":46.3,"hex":"#18181b"}],"swatches":["#c80828","#080808","#180808","#b80828"],"hist":[0.4685,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0022,0.0,0.0,0.0073,0.0,0.0,0.0,0.0,0.0,0.4793,0.0,0.0,0.019,0.0,0.0,0.0238,0.0,0.0]},{"code":"aq","name":"Antarctica","region":"Antarctica","aspect":1.5,"img":"flags/aq.png","colors":[{"name":"Light Blue","pct":69.3,"hex":"#38bdf8"},{"name":"White","pct":30.7,"hex":"#f8f9fa"}],"swatches":["#0898d8","#f8f8f8","#08a8d8","#e8f8f8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.6595,0.0,0.0,0.0127,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.018,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3098]},{"code":"ar","name":"Argentina","region":"Americas","aspect":1.6,"img":"flags/ar.png","colors":[{"name":"Light Blue","pct":68.0,"hex":"#38bdf8"},{"name":"White","pct":29.2,"hex":"#f8f9fa"}],"swatches":["#78a8d8","#f8f8f8","#a8c8e8","#e8d8c8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.68,0.0,0.0,0.0,0.012,0.001,0.0,0.001,0.012,0.294]},{"code":"as","name":"American Samoa","region":"Oceania","aspect":2.0,"img":"flags/as.png","colors":[{"name":"Blue","pct":48.8,"hex":"#1d4ed8"},{"name":"White","pct":31.8,"hex":"#f8f9fa"},{"name":"Maroon","pct":8.1,"hex":"#9f1239"},{"name":"Red","pct":7.5,"hex":"#ef233c"}],"swatches":["#080868","#f8f8f8","#b81828","#482818"],"hist":[0.0328,0.4875,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0413,0.0,0.0,0.0075,0.008,0.0,0.0,0.0,0.0,0.068,0.0025,0.0,0.008,0.0168,0.002,0.0018,0.0095,0.3145]},{"code":"at","name":"Austria","region":"Europe","aspect":1.5,"img":"flags/at.png","colors":[{"name":"Red","pct":68.0,"hex":"#ef233c"},{"name":"White","pct":32.0,"hex":"#f8f9fa"}],"swatches":["#c81828","#f8f8f8","#d86878"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.64,0.0,0.0,0.0,0.04,0.0,0.0,0.0,0.32]},{"code":"au","name":"Australia","region":"Oceania","aspect":2.0,"img":"flags/au.png","colors":[{"name":"Blue","pct":78.2,"hex":"#1d4ed8"},{"name":"White","pct":9.5,"hex":"#f8f9fa"},{"name":"Red","pct":9.0,"hex":"#ef233c"}],"swatches":["#082868","#e80828","#f8f8f8","#e82848"],"hist":[0.0,0.7672,0.0,0.0,0.0083,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.013,0.0125,0.0,0.0,0.0077,0.0825,0.0055,0.0,0.0,0.0075,0.0083,0.0,0.0,0.0875]},{"code":"aw","name":"Aruba","region":"Americas","aspect":1.5,"img":"flags/aw.png","colors":[{"name":"Light Blue","pct":86.4,"hex":"#38bdf8"},{"name":"Yellow","pct":12.1,"hex":"#facc15"}],"swatches":["#4888d8","#4898d8","#b8b848","#f8d808"],"hist":[0.0,0.0,0.0,0.0,0.0,0.8157,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0437,0.0,0.0,0.0043,0.0057,0.0005,0.0,0.0,0.0047,0.001,0.12,0.0,0.0043]},{"code":"ax","name":"\u00c5land Islands","region":"Europe","aspect":1.53,"img":"flags/ax.png","colors":[{"name":"Blue","pct":54.4,"hex":"#1d4ed8"},{"name":"Yellow","pct":21.9,"hex":"#facc15"},{"name":"Red","pct":18.6,"hex":"#ef233c"},{"name":"Green","pct":4.0,"hex":"#10b981"}],"swatches":["#0868a8","#f8d808","#d80818","#f8c808"],"hist":[0.0,0.0,0.0,0.0,0.0085,0.5355,0.0,0.0,0.0,0.0,0.0,0.0,0.0005,0.0405,0.0,0.0,0.0,0.0,0.186,0.0,0.0,0.011,0.0,0.0,0.218,0.0,0.0]},{"code":"az","name":"Azerbaijan","region":"Asia","aspect":2.0,"img":"flags/az.png","colors":[{"name":"Light Blue","pct":34.0,"hex":"#38bdf8"},{"name":"Green","pct":32.0,"hex":"#10b981"},{"name":"Red","pct":29.6,"hex":"#ef233c"}],"swatches":["#08b8e8","#589828","#e83848","#5888a8"],"hist":[0.0,0.0,0.0,0.32,0.02,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.293,0.0015,0.0,0.0,0.011,0.0005,0.0,0.0,0.014]},{"code":"ba","name":"Bosnia and Herzegovina","region":"Europe","aspect":2.0,"img":"flags/ba.png","colors":[{"name":"Blue","pct":69.8,"hex":"#1d4ed8"},{"name":"Yellow","pct":24.2,"hex":"#facc15"},{"name":"White","pct":3.0,"hex":"#f8f9fa"}],"swatches":["#082898","#f8c808","#384878","#f8f8f8"],"hist":[0.0,0.6945,0.0015,0.0,0.0,0.006,0.0,0.0,0.0,0.0,0.0,0.0,0.0025,0.0025,0.015,0.0,0.0,0.0057,0.0,0.0,0.0,0.0027,0.0,0.0,0.2422,0.0,0.0272]},{"code":"bb","name":"Barbados","region":"Americas","aspect":1.5,"img":"flags/bb.png","colors":[{"name":"Blue","pct":65.0,"hex":"#1d4ed8"},{"name":"Yellow","pct":27.2,"hex":"#facc15"}],"swatches":["#082878","#f8c828","#585868","#080808"],"hist":[0.03,0.65,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0035,0.0,0.0,0.013,0.025,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0075,0.0,0.0,0.271,0.0,0.0]},{"code":"bd","name":"Bangladesh","region":"Asia","aspect":1.67,"img":"flags/bd.png","colors":[{"name":"Green","pct":78.6,"hex":"#10b981"},{"name":"Red","pct":20.3,"hex":"#ef233c"}],"swatches":["#086848","#f82848","#e82848","#d83848"],"hist":[0.0,0.0,0.0,0.786,0.0,0.0,0.0,0.0,0.0,0.013,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.201,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},{"code":"be","name":"Belgium","region":"Europe","aspect":1.15,"img":"flags/be.png","colors":[{"name":"Red","pct":32.5,"hex":"#ef233c"},{"name":"Yellow","pct":32.5,"hex":"#facc15"},{"name":"Black","pct":32.5,"hex":"#18181b"}],"swatches":["#080808","#f8d828","#e83848","#584808"],"hist":[0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0125,0.0,0.0,0.325,0.0,0.0]},{"code":"bf","name":"Burkina Faso","region":"Africa","aspect":1.5,"img":"flags/bf.png","colors":[{"name":"Green","pct":49.0,"hex":"#10b981"},{"name":"Red","pct":48.5,"hex":"#ef233c"}],"swatches":["#089848","#e82828","#189848","#d83838"],"hist":[0.0,0.0,0.0,0.489,0.0,0.0,0.0005,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0025,0.0,0.0,0.486,0.0,0.0,0.006,0.0,0.0,0.016,0.0,0.0]},{"code":"bg","name":"Bulgaria","region":"Europe","aspect":1.67,"img":"flags/bg.png","colors":[{"name":"White","pct":34.0,"hex":"#f8f9fa"},{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"Green","pct":32.0,"hex":"#10b981"}],"swatches":["#f8f8f8","#d82818","#089868","#a8d8c8"],"hist":[0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32]},{"code":"bh","name":"Bahrain","region":"Asia","aspect":1.67,"img":"flags/bh.png","colors":[{"name":"Red","pct":66.8,"hex":"#ef233c"},{"name":"White","pct":31.8,"hex":"#f8f9fa"}],"swatches":["#d82818","#f8f8f8","#e85848","#d83828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.6625,0.0,0.0,0.005,0.0125,0.0,0.0,0.0,0.32]},{"code":"bi","name":"Burundi","region":"Africa","aspect":1.67,"img":"flags/bi.png","colors":[{"name":"White","pct":33.5,"hex":"#f8f9fa"},{"name":"Green","pct":33.3,"hex":"#10b981"},{"name":"Red","pct":30.6,"hex":"#ef233c"}],"swatches":["#48b828","#f8f8f8","#c81828","#c81838"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.322,0.0,0.0,0.0,0.0,0.0,0.0005,0.0,0.0,0.006,0.014,0.0,0.2905,0.007,0.0,0.0015,0.0155,0.0,0.0,0.005,0.338]},{"code":"bj","name":"Benin","region":"Africa","aspect":1.5,"img":"flags/bj.png","colors":[{"name":"Green","pct":40.0,"hex":"#10b981"},{"name":"Red","pct":30.0,"hex":"#ef233c"},{"name":"Yellow","pct":30.0,"hex":"#facc15"}],"swatches":["#088858","#f8d818","#e81828","#f8b818"],"hist":[0.0,0.0,0.0,0.4,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3,0.0,0.0,0.0,0.0,0.0,0.3,0.0,0.0]},{"code":"bl","name":"Saint Barth\u00e9lemy","region":"Americas","aspect":1.5,"img":"flags/bl.png","colors":[{"name":"White","pct":78.4,"hex":"#f8f9fa"},{"name":"Yellow","pct":7.1,"hex":"#facc15"},{"name":"Blue","pct":5.3,"hex":"#1d4ed8"},{"name":"Red","pct":4.0,"hex":"#ef233c"}],"swatches":["#f8f8f8","#e8e8e8","#d8d8d8","#1858b8"],"hist":[0.0,0.0055,0.027,0.0,0.0185,0.0032,0.0,0.0,0.0,0.0055,0.0,0.0,0.0127,0.0145,0.0035,0.0,0.0,0.0027,0.0365,0.0013,0.0,0.0057,0.0118,0.0,0.0512,0.0248,0.7755]},{"code":"bm","name":"Bermuda","region":"Americas","aspect":2.0,"img":"flags/bm.png","colors":[{"name":"Red","pct":73.2,"hex":"#ef233c"},{"name":"White","pct":13.0,"hex":"#f8f9fa"},{"name":"Blue","pct":6.5,"hex":"#1d4ed8"}],"swatches":["#c81828","#f8f8f8","#082868","#c82848"],"hist":[0.0003,0.0565,0.0,0.0138,0.0035,0.0,0.0,0.0,0.0,0.011,0.0,0.0,0.0043,0.0165,0.0065,0.0,0.003,0.0107,0.7093,0.017,0.0,0.003,0.0132,0.0043,0.0013,0.0037,0.1222]},{"code":"bn","name":"Brunei","region":"Asia","aspect":2.0,"img":"flags/bn.png","colors":[{"name":"Yellow","pct":54.4,"hex":"#facc15"},{"name":"White","pct":20.3,"hex":"#f8f9fa"},{"name":"Black","pct":15.5,"hex":"#18181b"},{"name":"Red","pct":4.2,"hex":"#ef233c"}],"swatches":["#f8e818","#f8f8f8","#080808","#f8d818"],"hist":[0.1675,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0175,0.0,0.0,0.0057,0.0063,0.0,0.0,0.0,0.0,0.0367,0.0032,0.0,0.0088,0.008,0.002,0.5305,0.0085,0.2052]},{"code":"bo","name":"Bolivia","region":"Americas","aspect":1.47,"img":"flags/bo.png","colors":[{"name":"Green","pct":35.3,"hex":"#10b981"},{"name":"Red","pct":33.2,"hex":"#ef233c"},{"name":"Yellow","pct":27.9,"hex":"#facc15"},{"name":"Orange","pct":3.0,"hex":"#f97316"}],"swatches":["#d82818","#087828","#f8e838","#e8e838"],"hist":[0.0013,0.0,0.0,0.3235,0.0047,0.0003,0.0,0.0,0.0,0.0005,0.0,0.0,0.0257,0.0043,0.0,0.0018,0.0008,0.0003,0.3317,0.0,0.0,0.0293,0.0003,0.0,0.2715,0.0037,0.0005]},{"code":"bq","name":"Caribbean Netherlands","region":"Americas","aspect":1.5,"img":"flags/bq.png","colors":[{"name":"Blue","pct":49.5,"hex":"#1d4ed8"},{"name":"White","pct":35.6,"hex":"#f8f9fa"},{"name":"Yellow","pct":9.1,"hex":"#facc15"}],"swatches":["#083888","#f8f8f8","#f8d808","#d80838"],"hist":[0.0165,0.491,0.0,0.0,0.0067,0.0003,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0107,0.0077,0.0,0.0,0.003,0.0132,0.0015,0.0,0.0,0.0047,0.0005,0.085,0.0032,0.3558]},{"code":"br","name":"Brazil","region":"Americas","aspect":1.43,"img":"flags/br.png","colors":[{"name":"Green","pct":68.5,"hex":"#10b981"},{"name":"Yellow","pct":17.2,"hex":"#facc15"},{"name":"Blue","pct":11.3,"hex":"#1d4ed8"}],"swatches":["#089848","#f8c808","#382888","#089838"],"hist":[0.0,0.11,0.0,0.679,0.0,0.0,0.0,0.0,0.0,0.0,0.005,0.0,0.0092,0.0063,0.0035,0.011,0.0,0.005,0.0,0.0,0.0,0.004,0.0,0.0,0.162,0.0008,0.0043]},{"code":"bs","name":"Bahamas","region":"Americas","aspect":2.0,"img":"flags/bs.png","colors":[{"name":"Blue","pct":54.7,"hex":"#1d4ed8"},{"name":"Black","pct":21.1,"hex":"#18181b"},{"name":"Yellow","pct":20.1,"hex":"#facc15"},{"name":"Green","pct":3.5,"hex":"#10b981"}],"swatches":["#087888","#080808","#f8c828","#589868"],"hist":[0.217,0.0015,0.0,0.0,0.5485,0.0,0.0,0.0,0.0,0.001,0.0,0.0,0.0015,0.028,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.0,0.0,0.2005,0.0,0.0]},{"code":"bt","name":"Bhutan","region":"Asia","aspect":1.5,"img":"flags/bt.png","colors":[{"name":"Yellow","pct":46.9,"hex":"#facc15"},{"name":"Orange","pct":40.9,"hex":"#f97316"},{"name":"White","pct":12.2,"hex":"#f8f9fa"}],"swatches":["#f8c808","#f86818","#e8e8e8","#f86828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0003,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.395,0.0205,0.0,0.434,0.0262,0.124]},{"code":"bv","name":"Bouvet Island","region":"Antarctica","aspect":1.37,"img":"flags/bv.png","colors":[{"name":"Red","pct":62.6,"hex":"#ef233c"},{"name":"Blue","pct":19.8,"hex":"#1d4ed8"},{"name":"White","pct":16.5,"hex":"#f8f9fa"}],"swatches":["#b80828","#082858","#f8f8f8","#c8d8d8"],"hist":[0.0,0.186,0.0,0.0,0.011,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011,0.0,0.0,0.0,0.0,0.576,0.041,0.0,0.0,0.01,0.0,0.0,0.0,0.165]},{"code":"bw","name":"Botswana","region":"Africa","aspect":1.5,"img":"flags/bw.png","colors":[{"name":"Light Blue","pct":76.0,"hex":"#38bdf8"},{"name":"Black","pct":16.0,"hex":"#18181b"},{"name":"White","pct":8.0,"hex":"#f8f9fa"}],"swatches":["#68a8d8","#080808","#98c8d8","#f8f8f8"],"hist":[0.16,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.72,0.0,0.0,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.08]},{"code":"by","name":"Belarus","region":"Europe","aspect":2.0,"img":"flags/by.png","colors":[{"name":"Red","pct":63.1,"hex":"#ef233c"},{"name":"Green","pct":30.1,"hex":"#10b981"},{"name":"Orange","pct":3.3,"hex":"#f97316"}],"swatches":["#c81828","#087838","#485828","#e89898"],"hist":[0.0,0.0,0.0,0.2995,0.002,0.0,0.0,0.0,0.0,0.0003,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.6132,0.006,0.0,0.0,0.05,0.0005,0.0,0.0,0.0285]},{"code":"bz","name":"Belize","region":"Americas","aspect":1.67,"img":"flags/bz.png","colors":[{"name":"Blue","pct":63.6,"hex":"#1d4ed8"},{"name":"Red","pct":20.0,"hex":"#ef233c"},{"name":"White","pct":8.4,"hex":"#f8f9fa"},{"name":"Light Blue","pct":3.0,"hex":"#38bdf8"}],"swatches":["#181898","#d80818","#c81828","#281888"],"hist":[0.0003,0.633,0.0,0.0035,0.001,0.0005,0.0,0.0,0.0,0.0027,0.0,0.0,0.0118,0.0112,0.0115,0.001,0.0267,0.003,0.2,0.0,0.0,0.0003,0.003,0.0,0.0,0.0185,0.072]},{"code":"ca","name":"Canada","region":"Americas","aspect":2.0,"img":"flags/ca.png","colors":[{"name":"Red","pct":62.6,"hex":"#ef233c"},{"name":"White","pct":35.2,"hex":"#f8f9fa"}],"swatches":["#f80808","#f8f8f8","#f8d8d8","#f82828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.6265,0.0,0.0,0.0,0.0185,0.0,0.0,0.0,0.355]},{"code":"cc","name":"Cocos (Keeling) Islands","region":"Oceania","aspect":2.0,"img":"flags/cc.png","colors":[{"name":"Green","pct":90.2,"hex":"#10b981"},{"name":"Yellow","pct":9.5,"hex":"#facc15"}],"swatches":["#088808","#f8e808","#f8d808","#188808"],"hist":[0.0,0.0,0.0,0.889,0.0,0.0,0.0,0.0,0.0,0.0008,0.0,0.0,0.0092,0.0,0.0,0.0163,0.0,0.0,0.0,0.0,0.0,0.0025,0.0,0.0,0.0823,0.0,0.0]},{"code":"cd","name":"DR Congo","region":"Africa","aspect":1.33,"img":"flags/cd.png","colors":[{"name":"Light Blue","pct":67.2,"hex":"#38bdf8"},{"name":"Red","pct":20.0,"hex":"#ef233c"},{"name":"Yellow","pct":10.8,"hex":"#facc15"}],"swatches":["#0878f8","#c81828","#f8d818","#0888f8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.668,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.0003,0.0,0.0032,0.0,0.2,0.0,0.0,0.02,0.0,0.0,0.088,0.0185,0.0]},{"code":"cf","name":"Central African Republic","region":"Africa","aspect":1.5,"img":"flags/cf.png","colors":[{"name":"Yellow","pct":22.1,"hex":"#facc15"},{"name":"Green","pct":20.1,"hex":"#10b981"},{"name":"White","pct":19.8,"hex":"#f8f9fa"},{"name":"Blue","pct":18.6,"hex":"#1d4ed8"}],"swatches":["#f8c808","#f8f8f8","#289828","#083888"],"hist":[0.0,0.1862,0.0,0.198,0.0013,0.0,0.0,0.0,0.0,0.012,0.0,0.0,0.0025,0.0,0.0165,0.0165,0.0,0.0,0.1565,0.0005,0.0,0.0013,0.006,0.0,0.2047,0.0,0.198]},{"code":"cg","name":"Republic of the Congo","region":"Africa","aspect":1.5,"img":"flags/cg.png","colors":[{"name":"Green","pct":33.5,"hex":"#10b981"},{"name":"Yellow","pct":32.9,"hex":"#facc15"},{"name":"Red","pct":32.8,"hex":"#ef233c"}],"swatches":["#089848","#d82818","#f8d848","#d82828"],"hist":[0.0,0.0,0.0,0.3287,0.0,0.0,0.0008,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0073,0.0,0.0,0.328,0.0,0.0,0.0097,0.0,0.0,0.3255,0.0,0.0]},{"code":"ch","name":"Switzerland","region":"Europe","aspect":1.0,"img":"flags/ch.png","colors":[{"name":"Red","pct":78.8,"hex":"#ef233c"},{"name":"White","pct":17.8,"hex":"#f8f9fa"}],"swatches":["#f80808","#f8f8f8","#f8a8a8","#f88888"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.788,0.0,0.0,0.0,0.018,0.0,0.0,0.0,0.194]},{"code":"ci","name":"C\u00f4te d'Ivoire (Ivory Coast)","region":"Africa","aspect":1.5,"img":"flags/ci.png","colors":[{"name":"White","pct":32.5,"hex":"#f8f9fa"},{"name":"Green","pct":32.5,"hex":"#10b981"},{"name":"Orange","pct":32.5,"hex":"#f97316"}],"swatches":["#f87808","#f8f8f8","#089868","#f8a858"],"hist":[0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0125,0.325]},{"code":"ck","name":"Cook Islands","region":"Oceania","aspect":2.0,"img":"flags/ck.png","colors":[{"name":"Blue","pct":76.1,"hex":"#1d4ed8"},{"name":"White","pct":10.7,"hex":"#f8f9fa"},{"name":"Red","pct":9.0,"hex":"#ef233c"},{"name":"Light Blue","pct":3.4,"hex":"#38bdf8"}],"swatches":["#082868","#c81828","#c82848","#f8f8f8"],"hist":[0.0,0.7405,0.0,0.0,0.012,0.0,0.0,0.0,0.0,0.0,0.0003,0.0,0.0,0.0232,0.0163,0.0,0.0,0.0095,0.0805,0.007,0.0,0.0,0.0077,0.0037,0.0,0.0,0.0993]},{"code":"cl","name":"Chile","region":"Americas","aspect":1.5,"img":"flags/cl.png","colors":[{"name":"Red","pct":50.0,"hex":"#ef233c"},{"name":"White","pct":34.0,"hex":"#f8f9fa"},{"name":"Blue","pct":14.8,"hex":"#1d4ed8"}],"swatches":["#d82818","#f8f8f8","#0838a8","#f8e8e8"],"hist":[0.0,0.1447,0.0013,0.0,0.0,0.0027,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0103,0.0,0.0,0.0008,0.5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3402]},{"code":"cm","name":"Cameroon","region":"Africa","aspect":1.5,"img":"flags/cm.png","colors":[{"name":"Green","pct":33.8,"hex":"#10b981"},{"name":"Yellow","pct":33.5,"hex":"#facc15"},{"name":"Red","pct":31.1,"hex":"#ef233c"}],"swatches":["#f8d818","#087858","#c81828","#e88818"],"hist":[0.0,0.0,0.0,0.0125,0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3105,0.0,0.0,0.0175,0.0,0.0,0.3345,0.0,0.0]},{"code":"cn","name":"China","region":"Asia","aspect":1.5,"img":"flags/cn.png","colors":[{"name":"Red","pct":96.7,"hex":"#ef233c"}],"swatches":["#e81828","#e82828","#f8f808","#f83828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9688,0.0,0.0,0.0115,0.0,0.0,0.0198,0.0,0.0]},{"code":"co","name":"Colombia","region":"Americas","aspect":1.5,"img":"flags/co.png","colors":[{"name":"Yellow","pct":50.0,"hex":"#facc15"},{"name":"Red","pct":24.0,"hex":"#ef233c"},{"name":"Blue","pct":24.0,"hex":"#1d4ed8"}],"swatches":["#f8c808","#c81828","#083888","#d8b818"],"hist":[0.0,0.24,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.24,0.0,0.0,0.0,0.0,0.0,0.5,0.0,0.0]},{"code":"cr","name":"Costa Rica","region":"Americas","aspect":1.67,"img":"flags/cr.png","colors":[{"name":"Blue","pct":32.2,"hex":"#1d4ed8"},{"name":"White","pct":29.4,"hex":"#f8f9fa"},{"name":"Red","pct":28.3,"hex":"#ef233c"},{"name":"Light Blue","pct":4.6,"hex":"#38bdf8"}],"swatches":["#081888","#f8f8f8","#d82818","#f8b8b8"],"hist":[0.0,0.3212,0.0,0.0018,0.002,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.004,0.0003,0.0,0.0003,0.044,0.283,0.0,0.0,0.0005,0.005,0.0,0.0,0.0025,0.3335]},{"code":"cu","name":"Cuba","region":"Americas","aspect":2.0,"img":"flags/cu.png","colors":[{"name":"Blue","pct":48.5,"hex":"#1d4ed8"},{"name":"White","pct":30.7,"hex":"#f8f9fa"},{"name":"Red","pct":19.2,"hex":"#ef233c"}],"swatches":["#082888","#f8f8f8","#c81818","#284898"],"hist":[0.0,0.486,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.006,0.001,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1905,0.0,0.0,0.0,0.0095,0.0,0.0,0.0,0.307]},{"code":"cv","name":"Cape Verde","region":"Africa","aspect":1.7,"img":"flags/cv.png","colors":[{"name":"Blue","pct":73.0,"hex":"#1d4ed8"},{"name":"White","pct":13.3,"hex":"#f8f9fa"},{"name":"Red","pct":8.0,"hex":"#ef233c"},{"name":"Yellow","pct":3.0,"hex":"#facc15"}],"swatches":["#083898","#f8f8f8","#c82828","#d85858"],"hist":[0.0,0.7275,0.0,0.0,0.0055,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0025,0.001,0.02,0.0,0.0,0.0,0.062,0.018,0.0,0.0005,0.0,0.0,0.005,0.0045,0.1535]},{"code":"cw","name":"Cura\u00e7ao","region":"Americas","aspect":1.5,"img":"flags/cw.png","colors":[{"name":"Blue","pct":84.3,"hex":"#1d4ed8"},{"name":"Yellow","pct":12.0,"hex":"#facc15"}],"swatches":["#082878","#f8e818","#083878","#b8b838"],"hist":[0.0,0.841,0.0,0.0,0.0032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.003,0.0,0.0,0.001,0.0,0.0,0.0,0.0,0.0,0.0,0.12,0.0,0.0118]},{"code":"cx","name":"Christmas Island","region":"Oceania","aspect":2.0,"img":"flags/cx.png","colors":[{"name":"Green","pct":46.4,"hex":"#10b981"},{"name":"Blue","pct":45.2,"hex":"#1d4ed8"},{"name":"Yellow","pct":6.8,"hex":"#facc15"}],"swatches":["#082868","#08b828","#f8d818","#18b828"],"hist":[0.0025,0.452,0.0,0.017,0.0022,0.0,0.4343,0.0,0.0,0.0,0.0,0.0,0.0015,0.0032,0.004,0.0175,0.0,0.0005,0.0,0.0,0.0,0.001,0.0,0.0,0.0573,0.0,0.007]},{"code":"cy","name":"Cyprus","region":"Europe","aspect":1.5,"img":"flags/cy.png","colors":[{"name":"White","pct":86.3,"hex":"#f8f9fa"},{"name":"Orange","pct":10.5,"hex":"#f97316"}],"swatches":["#f8f8f8","#d87808","#d88818","#f8e8d8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0005,0.0165,0.0,0.0,0.0005,0.0,0.0,0.0,0.0,0.106,0.001,0.0,0.0,0.0168,0.8588]},{"code":"cz","name":"Czechia","region":"Europe","aspect":1.5,"img":"flags/cz.png","colors":[{"name":"White","pct":37.4,"hex":"#f8f9fa"},{"name":"Red","pct":37.1,"hex":"#ef233c"},{"name":"Blue","pct":24.4,"hex":"#1d4ed8"}],"swatches":["#f8f8f8","#d81818","#184878","#f8e8e8"],"hist":[0.0,0.2415,0.0,0.0,0.0037,0.0,0.0,0.0,0.0,0.005,0.001,0.0,0.0,0.0003,0.0022,0.0,0.0,0.0018,0.3713,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3733]},{"code":"de","name":"Germany","region":"Europe","aspect":1.67,"img":"flags/de.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"Yellow","pct":32.0,"hex":"#facc15"},{"name":"Black","pct":32.0,"hex":"#18181b"}],"swatches":["#080808","#d80808","#f8c808","#480808"],"hist":[0.34,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.02,0.0,0.0,0.32,0.0,0.0]},{"code":"dj","name":"Djibouti","region":"Africa","aspect":1.5,"img":"flags/dj.png","colors":[{"name":"Light Blue","pct":36.0,"hex":"#38bdf8"},{"name":"Green","pct":35.4,"hex":"#10b981"},{"name":"White","pct":26.9,"hex":"#f8f9fa"}],"swatches":["#68b8e8","#18a828","#f8f8f8","#58b8c8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.351,0.0013,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005,0.3553,0.0103,0.0,0.0,0.0,0.0065,0.0,0.0,0.0,0.2707]},{"code":"dk","name":"Denmark","region":"Europe","aspect":1.32,"img":"flags/dk.png","colors":[{"name":"Red","pct":74.5,"hex":"#ef233c"},{"name":"White","pct":20.9,"hex":"#f8f9fa"},{"name":"Orange","pct":3.5,"hex":"#f97316"}],"swatches":["#c81828","#f8f8f8","#e898a8","#d83848"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.7455,0.0,0.0,0.0,0.0455,0.0005,0.0,0.0,0.2085]},{"code":"dm","name":"Dominica","region":"Americas","aspect":2.0,"img":"flags/dm.png","colors":[{"name":"Green","pct":65.8,"hex":"#10b981"},{"name":"White","pct":8.1,"hex":"#f8f9fa"},{"name":"Yellow","pct":8.0,"hex":"#facc15"},{"name":"Black","pct":7.2,"hex":"#18181b"}],"swatches":["#086838","#f8c808","#f8f8f8","#080808"],"hist":[0.0783,0.0005,0.0,0.6388,0.016,0.0,0.0,0.0,0.0,0.0238,0.0027,0.0003,0.0,0.0067,0.0008,0.0,0.0,0.0,0.0673,0.001,0.0,0.0175,0.001,0.0005,0.0645,0.0,0.0805]},{"code":"do","name":"Dominican Republic","region":"Americas","aspect":1.5,"img":"flags/do.png","colors":[{"name":"Red","pct":35.2,"hex":"#ef233c"},{"name":"Blue","pct":34.1,"hex":"#1d4ed8"},{"name":"White","pct":28.1,"hex":"#f8f9fa"}],"swatches":["#082868","#c81828","#f8f8f8","#f8e8e8"],"hist":[0.0003,0.34,0.0,0.0013,0.002,0.0,0.0,0.0,0.0,0.0005,0.0,0.0,0.0008,0.0165,0.0003,0.0,0.0008,0.0005,0.3405,0.0,0.0,0.0,0.0163,0.0,0.0,0.0003,0.2802]},{"code":"dz","name":"Algeria","region":"Africa","aspect":1.5,"img":"flags/dz.png","colors":[{"name":"White","pct":47.5,"hex":"#f8f9fa"},{"name":"Green","pct":45.6,"hex":"#10b981"},{"name":"Red","pct":4.9,"hex":"#ef233c"}],"swatches":["#f8f8f8","#086838","#d81838","#287848"],"hist":[0.005,0.0,0.0,0.4545,0.0,0.0,0.0,0.0,0.0,0.007,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0455,0.003,0.0,0.0,0.0075,0.0025,0.0,0.0,0.475]},{"code":"ec","name":"Ecuador","region":"Americas","aspect":1.5,"img":"flags/ec.png","colors":[{"name":"Yellow","pct":47.6,"hex":"#facc15"},{"name":"Red","pct":24.7,"hex":"#ef233c"},{"name":"Blue","pct":20.4,"hex":"#1d4ed8"},{"name":"Maroon","pct":3.5,"hex":"#9f1239"}],"swatches":["#f8d808","#e81828","#0848a8","#d8c818"],"hist":[0.0045,0.1757,0.0,0.0015,0.033,0.001,0.0,0.0,0.0,0.006,0.0203,0.0,0.0125,0.0135,0.0,0.0018,0.001,0.0025,0.2452,0.0,0.0,0.0055,0.0008,0.0,0.4728,0.001,0.0015]},{"code":"ee","name":"Estonia","region":"Europe","aspect":1.57,"img":"flags/ee.png","colors":[{"name":"Blue","pct":34.0,"hex":"#1d4ed8"},{"name":"White","pct":32.0,"hex":"#f8f9fa"},{"name":"Black","pct":32.0,"hex":"#18181b"}],"swatches":["#0878c8","#080808","#f8f8f8","#084888"],"hist":[0.32,0.02,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32]},{"code":"eg","name":"Egypt","region":"Africa","aspect":1.5,"img":"flags/eg.png","colors":[{"name":"Red","pct":34.0,"hex":"#ef233c"},{"name":"Black","pct":32.0,"hex":"#18181b"},{"name":"White","pct":29.7,"hex":"#f8f9fa"}],"swatches":["#c81828","#080808","#f8f8f8","#d86878"],"hist":[0.321,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0005,0.0,0.0,0.0005,0.018,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.001,0.02,0.0,0.0088,0.011,0.2993]},{"code":"eh","name":"Western Sahara","region":"Africa","aspect":2.0,"img":"flags/eh.png","colors":[{"name":"Green","pct":30.1,"hex":"#10b981"},{"name":"Black","pct":28.4,"hex":"#18181b"},{"name":"White","pct":21.6,"hex":"#f8f9fa"},{"name":"Red","pct":17.1,"hex":"#ef233c"}],"swatches":["#080808","#087838","#f8f8f8","#c81818"],"hist":[0.2865,0.0,0.0,0.2848,0.0003,0.0,0.0,0.0,0.0,0.0065,0.0,0.0,0.0,0.0305,0.0,0.0,0.0,0.0,0.1675,0.001,0.0,0.0,0.0065,0.0005,0.0,0.0,0.216]},{"code":"er","name":"Eritrea","region":"Africa","aspect":2.0,"img":"flags/er.png","colors":[{"name":"Red","pct":42.9,"hex":"#ef233c"},{"name":"Light Blue","pct":24.6,"hex":"#38bdf8"},{"name":"Green","pct":24.5,"hex":"#10b981"},{"name":"Orange","pct":4.0,"hex":"#f97316"}],"swatches":["#e80828","#4888d8","#48b828","#f8b828"],"hist":[0.0,0.0,0.0,0.0047,0.0,0.24,0.234,0.0,0.0,0.0037,0.0063,0.0,0.0112,0.0027,0.0047,0.0,0.0,0.0,0.427,0.0025,0.0,0.0413,0.0,0.0,0.0217,0.0,0.0]},{"code":"es","name":"Spain","region":"Europe","aspect":1.5,"img":"flags/es.png","colors":[{"name":"Red","pct":49.2,"hex":"#ef233c"},{"name":"Yellow","pct":41.1,"hex":"#facc15"},{"name":"Orange","pct":6.2,"hex":"#f97316"}],"swatches":["#a81818","#f8b808","#d86808","#982818"],"hist":[0.0,0.0008,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.027,0.0003,0.0,0.0073,0.0055,0.0,0.0,0.0,0.0,0.4858,0.0,0.0,0.0578,0.007,0.0,0.4085,0.0003,0.0]},{"code":"et","name":"Ethiopia","region":"Africa","aspect":2.0,"img":"flags/et.png","colors":[{"name":"Green","pct":32.3,"hex":"#10b981"},{"name":"Red","pct":28.8,"hex":"#ef233c"},{"name":"Yellow","pct":23.3,"hex":"#facc15"},{"name":"Blue","pct":13.4,"hex":"#1d4ed8"}],"swatches":["#088838","#d81818","#f8d808","#0848a8"],"hist":[0.0,0.0155,0.0897,0.288,0.0318,0.0,0.0,0.0,0.0,0.0015,0.003,0.0,0.0208,0.017,0.0,0.0,0.0,0.0,0.2875,0.0,0.0,0.014,0.0,0.0,0.2313,0.0,0.0]},{"code":"fi","name":"Finland","region":"Europe","aspect":1.64,"img":"flags/fi.png","colors":[{"name":"White","pct":59.4,"hex":"#f8f9fa"},{"name":"Blue","pct":39.7,"hex":"#1d4ed8"}],"swatches":["#f8f8f8","#082868","#385888","#486898"],"hist":[0.0,0.355,0.0,0.0,0.042,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.594]},{"code":"fj","name":"Fiji","region":"Oceania","aspect":2.0,"img":"flags/fj.png","colors":[{"name":"Light Blue","pct":67.6,"hex":"#38bdf8"},{"name":"Red","pct":11.5,"hex":"#ef233c"},{"name":"White","pct":10.5,"hex":"#f8f9fa"},{"name":"Blue","pct":6.5,"hex":"#1d4ed8"}],"swatches":["#68b8e8","#c81828","#082868","#c82848"],"hist":[0.0,0.056,0.0,0.0018,0.0045,0.0,0.0,0.0,0.0,0.0055,0.0,0.0,0.0,0.0125,0.0362,0.0003,0.0045,0.6382,0.1015,0.0077,0.0,0.009,0.0185,0.0037,0.0043,0.0005,0.0953]},{"code":"fk","name":"Falkland Islands","region":"Americas","aspect":2.0,"img":"flags/fk.png","colors":[{"name":"Blue","pct":69.2,"hex":"#1d4ed8"},{"name":"White","pct":10.7,"hex":"#f8f9fa"},{"name":"Red","pct":9.0,"hex":"#ef233c"},{"name":"Light Blue","pct":6.6,"hex":"#38bdf8"}],"swatches":["#082868","#c81828","#c82848","#f8e8e8"],"hist":[0.0005,0.6793,0.0,0.001,0.0097,0.0323,0.0,0.0,0.0,0.0003,0.001,0.0,0.002,0.0243,0.0177,0.0,0.0008,0.0095,0.0805,0.007,0.0,0.006,0.0185,0.0037,0.0018,0.0083,0.096]},{"code":"fm","name":"Micronesia","region":"Oceania","aspect":1.9,"img":"flags/fm.png","colors":[{"name":"Light Blue","pct":97.5,"hex":"#38bdf8"}],"swatches":["#78b8d8","#88b8e8","#f8f8f8","#d8e8f8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.973,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.027]},{"code":"fo","name":"Faroe Islands","region":"Europe","aspect":1.37,"img":"flags/fo.png","colors":[{"name":"White","pct":61.7,"hex":"#f8f9fa"},{"name":"Red","pct":19.7,"hex":"#ef233c"},{"name":"Blue","pct":16.5,"hex":"#1d4ed8"}],"swatches":["#f8f8f8","#e83848","#0858b8","#0868b8"],"hist":[0.0,0.0005,0.0,0.0,0.0355,0.129,0.0,0.0,0.0,0.0,0.0215,0.0,0.0,0.0,0.0005,0.0,0.0,0.0095,0.186,0.0005,0.0,0.0,0.0,0.0,0.0,0.0,0.617]},{"code":"fr","name":"France","region":"Europe","aspect":1.5,"img":"flags/fr.png","colors":[{"name":"Red","pct":33.8,"hex":"#ef233c"},{"name":"Blue","pct":33.8,"hex":"#1d4ed8"},{"name":"White","pct":32.5,"hex":"#f8f9fa"}],"swatches":["#082858","#f8f8f8","#c81828","#587888"],"hist":[0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.325]},{"code":"ga","name":"Gabon","region":"Africa","aspect":1.33,"img":"flags/ga.png","colors":[{"name":"Light Blue","pct":34.0,"hex":"#38bdf8"},{"name":"Green","pct":34.0,"hex":"#10b981"},{"name":"Yellow","pct":32.0,"hex":"#facc15"}],"swatches":["#089868","#f8d818","#3878c8","#58b848"],"hist":[0.0,0.0,0.0,0.0,0.32,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0]},{"code":"gb-eng","name":"England","region":"Europe","aspect":1.67,"img":"flags/gb-eng.png","colors":[{"name":"White","pct":70.0,"hex":"#f8f9fa"},{"name":"Red","pct":30.0,"hex":"#ef233c"}],"swatches":["#f8f8f8","#c81828","#c82848","#f8e8e8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.28,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.7]},{"code":"gb-nir","name":"Northern Ireland","region":"Europe","aspect":2.0,"img":"flags/gb-nir.png","colors":[{"name":"White","pct":74.8,"hex":"#f8f9fa"},{"name":"Red","pct":23.4,"hex":"#ef233c"}],"swatches":["#f8f8f8","#c80808","#f8d8d8","#d82828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005,0.0,0.0,0.006,0.0,0.0,0.0,0.0,0.0,0.228,0.0,0.0,0.002,0.0115,0.0,0.0,0.0015,0.746]},{"code":"gb-sct","name":"Scotland","region":"Europe","aspect":1.67,"img":"flags/gb-sct.png","colors":[{"name":"Blue","pct":55.4,"hex":"#1d4ed8"},{"name":"White","pct":40.0,"hex":"#f8f9fa"},{"name":"Light Blue","pct":4.6,"hex":"#38bdf8"}],"swatches":["#0858b8","#f8f8f8","#0868b8","#d8e8f8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.577,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009,0.0,0.0,0.014,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.4]},{"code":"gb-wls","name":"Wales","region":"Europe","aspect":1.67,"img":"flags/gb-wls.png","colors":[{"name":"Green","pct":32.9,"hex":"#10b981"},{"name":"White","pct":32.5,"hex":"#f8f9fa"},{"name":"Red","pct":26.4,"hex":"#ef233c"},{"name":"Maroon","pct":6.9,"hex":"#9f1239"}],"swatches":["#f8f8f8","#08b848","#c81828","#b80828"],"hist":[0.0015,0.0,0.0,0.0505,0.0,0.0,0.2727,0.0063,0.0,0.072,0.0,0.0,0.001,0.0005,0.0,0.0,0.0,0.0,0.2402,0.0085,0.0,0.0,0.024,0.002,0.0,0.0,0.3207]},{"code":"gb","name":"United Kingdom","region":"Europe","aspect":2.0,"img":"flags/gb.png","colors":[{"name":"Red","pct":36.9,"hex":"#ef233c"},{"name":"White","pct":32.0,"hex":"#f8f9fa"},{"name":"Blue","pct":27.7,"hex":"#1d4ed8"}],"swatches":["#c81828","#082868","#f8f8f8","#f8e8e8"],"hist":[0.0,0.251,0.0,0.0,0.009,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.022,0.01,0.0,0.0,0.014,0.346,0.0125,0.0,0.0,0.0235,0.003,0.0,0.0,0.309]},{"code":"gd","name":"Grenada","region":"Americas","aspect":1.67,"img":"flags/gd.png","colors":[{"name":"Red","pct":38.0,"hex":"#ef233c"},{"name":"Yellow","pct":29.8,"hex":"#facc15"},{"name":"Green","pct":27.9,"hex":"#10b981"}],"swatches":["#c81828","#087858","#f8d818","#f8b818"],"hist":[0.0,0.0,0.0,0.0138,0.2565,0.0,0.0,0.0,0.0,0.0203,0.0,0.0,0.01,0.0,0.0,0.005,0.0,0.0,0.3802,0.0,0.0,0.0257,0.0,0.0,0.2885,0.0,0.0]},{"code":"ge","name":"Georgia","region":"Asia","aspect":1.5,"img":"flags/ge.png","colors":[{"name":"White","pct":61.4,"hex":"#f8f9fa"},{"name":"Red","pct":34.4,"hex":"#ef233c"}],"swatches":["#f8f8f8","#f80808","#f8d8d8","#f82828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.346,0.0,0.0,0.0,0.038,0.0,0.0,0.0,0.616]},{"code":"gf","name":"French Guiana","region":"Americas","aspect":1.5,"img":"flags/gf.png","colors":[{"name":"Green","pct":48.9,"hex":"#10b981"},{"name":"Yellow","pct":48.7,"hex":"#facc15"}],"swatches":["#f8d808","#088838","#d81818","#088828"],"hist":[0.0,0.0,0.0,0.485,0.0,0.0,0.0,0.0,0.0,0.004,0.0,0.0,0.002,0.0,0.0,0.0065,0.0,0.0,0.0168,0.0,0.0,0.0032,0.0,0.0,0.4825,0.0,0.0]},{"code":"gg","name":"Guernsey","region":"Europe","aspect":1.5,"img":"flags/gg.png","colors":[{"name":"White","pct":62.6,"hex":"#f8f9fa"},{"name":"Red","pct":27.3,"hex":"#ef233c"},{"name":"Yellow","pct":7.5,"hex":"#facc15"}],"swatches":["#f8f8f8","#e81828","#f8d818","#f8b8c8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.272,0.001,0.0,0.008,0.018,0.0,0.074,0.0,0.627]},{"code":"gh","name":"Ghana","region":"Africa","aspect":1.5,"img":"flags/gh.png","colors":[{"name":"Green","pct":34.0,"hex":"#10b981"},{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"Yellow","pct":28.9,"hex":"#facc15"}],"swatches":["#c81828","#086838","#f8d818","#f8c818"],"hist":[0.023,0.0,0.0,0.321,0.0,0.0,0.0,0.0,0.0,0.0015,0.0,0.0,0.023,0.0,0.0,0.0,0.0,0.0,0.34,0.0,0.0,0.0025,0.0,0.0,0.289,0.0,0.0]},{"code":"gi","name":"Gibraltar","region":"Europe","aspect":2.0,"img":"flags/gi.png","colors":[{"name":"White","pct":53.0,"hex":"#f8f9fa"},{"name":"Red","pct":39.0,"hex":"#ef233c"},{"name":"Maroon","pct":3.5,"hex":"#9f1239"}],"swatches":["#f8f8f8","#d80808","#e87888","#a80808"],"hist":[0.0185,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0333,0.0,0.0,0.0005,0.0,0.0,0.0,0.0,0.0,0.384,0.0,0.0,0.0032,0.0315,0.0,0.0,0.0,0.529]},{"code":"gl","name":"Greenland","region":"Americas","aspect":1.5,"img":"flags/gl.png","colors":[{"name":"Red","pct":49.6,"hex":"#ef233c"},{"name":"White","pct":49.3,"hex":"#f8f9fa"}],"swatches":["#f8f8f8","#c81828","#f8e8e8","#c82848"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.4893,0.003,0.0,0.0,0.0112,0.002,0.0,0.0,0.4945]},{"code":"gm","name":"Gambia","region":"Africa","aspect":1.5,"img":"flags/gm.png","colors":[{"name":"Red","pct":34.0,"hex":"#ef233c"},{"name":"Green","pct":34.0,"hex":"#10b981"},{"name":"Blue","pct":20.0,"hex":"#1d4ed8"},{"name":"White","pct":8.0,"hex":"#f8f9fa"}],"swatches":["#c81828","#387828","#081888","#f8f8f8"],"hist":[0.0,0.2,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.04,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.08]},{"code":"gn","name":"Guinea","region":"Africa","aspect":1.5,"img":"flags/gn.png","colors":[{"name":"Green","pct":33.8,"hex":"#10b981"},{"name":"Red","pct":32.5,"hex":"#ef233c"},{"name":"Yellow","pct":32.5,"hex":"#facc15"}],"swatches":["#c81828","#089868","#f8d818","#d85828"],"hist":[0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.0,0.3375,0.0,0.0,0.0,0.0,0.0,0.325,0.0,0.0]},{"code":"gp","name":"Guadeloupe","region":"Americas","aspect":1.5,"img":"flags/gp.png","colors":[{"name":"Black","pct":45.0,"hex":"#18181b"},{"name":"Blue","pct":27.9,"hex":"#1d4ed8"},{"name":"Yellow","pct":15.9,"hex":"#facc15"},{"name":"Green","pct":5.7,"hex":"#10b981"}],"swatches":["#080808","#082888","#f8d808","#081858"],"hist":[0.4995,0.2782,0.0,0.011,0.0015,0.0,0.0,0.0,0.0,0.0022,0.0,0.0,0.0395,0.0015,0.0,0.0003,0.0,0.0,0.0,0.0,0.0,0.01,0.0,0.0,0.1562,0.0,0.0]},{"code":"gq","name":"Equatorial Guinea","region":"Africa","aspect":1.5,"img":"flags/gq.png","colors":[{"name":"Green","pct":31.6,"hex":"#10b981"},{"name":"Red","pct":29.3,"hex":"#ef233c"},{"name":"White","pct":24.4,"hex":"#f8f9fa"},{"name":"Blue","pct":11.9,"hex":"#1d4ed8"}],"swatches":["#389808","#e82818","#f8f8f8","#0878c8"],"hist":[0.0,0.0,0.0,0.296,0.004,0.1202,0.0003,0.0,0.0,0.0008,0.0018,0.0,0.0005,0.0015,0.0,0.0,0.0187,0.0015,0.2928,0.0,0.0,0.0,0.0173,0.0,0.0,0.003,0.2417]},{"code":"gr","name":"Greece","region":"Europe","aspect":1.5,"img":"flags/gr.png","colors":[{"name":"Blue","pct":46.0,"hex":"#1d4ed8"},{"name":"White","pct":40.1,"hex":"#f8f9fa"},{"name":"Light Blue","pct":13.8,"hex":"#38bdf8"}],"swatches":["#0858a8","#f8f8f8","#4888c8","#6898c8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.5292,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0678,0.0,0.0,0.0015,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.4015]},{"code":"gs","name":"South Georgia","region":"Antarctica","aspect":2.0,"img":"flags/gs.png","colors":[{"name":"Blue","pct":71.0,"hex":"#1d4ed8"},{"name":"Red","pct":9.2,"hex":"#ef233c"},{"name":"White","pct":8.4,"hex":"#f8f9fa"},{"name":"Maroon","pct":3.6,"hex":"#9f1239"}],"swatches":["#082868","#c81828","#c82848","#f8e8e8"],"hist":[0.0393,0.684,0.0045,0.0047,0.011,0.0,0.0,0.0,0.0,0.0135,0.001,0.0,0.0107,0.028,0.0103,0.0,0.0,0.0075,0.082,0.007,0.0,0.008,0.0077,0.0037,0.0,0.0005,0.0765]},{"code":"gt","name":"Guatemala","region":"Americas","aspect":1.6,"img":"flags/gt.png","colors":[{"name":"Light Blue","pct":68.2,"hex":"#38bdf8"},{"name":"White","pct":30.1,"hex":"#f8f9fa"}],"swatches":["#4898d8","#f8f8f8","#88b8e8","#a8b898"],"hist":[0.0,0.0,0.0,0.0,0.0,0.65,0.0,0.0,0.0,0.0005,0.0,0.0,0.0037,0.0077,0.0,0.0,0.0053,0.025,0.0,0.0,0.0,0.0,0.0003,0.0,0.0,0.0112,0.2963]},{"code":"gu","name":"Guam","region":"Oceania","aspect":1.86,"img":"flags/gu.png","colors":[{"name":"Blue","pct":80.0,"hex":"#1d4ed8"},{"name":"Red","pct":13.2,"hex":"#ef233c"},{"name":"Light Blue","pct":4.3,"hex":"#38bdf8"}],"swatches":["#082878","#c82838","#382868","#182878"],"hist":[0.0,0.8025,0.0,0.0015,0.0025,0.0055,0.0,0.002,0.0,0.0243,0.0063,0.0,0.0005,0.0067,0.005,0.0,0.0013,0.0265,0.107,0.0005,0.0,0.0018,0.002,0.0,0.0008,0.002,0.0015]},{"code":"gw","name":"Guinea-Bissau","region":"Africa","aspect":2.0,"img":"flags/gw.png","colors":[{"name":"Green","pct":33.1,"hex":"#10b981"},{"name":"Yellow","pct":33.1,"hex":"#facc15"},{"name":"Red","pct":30.5,"hex":"#ef233c"}],"swatches":["#089848","#f8d818","#c81828","#d8c818"],"hist":[0.014,0.0,0.0,0.3312,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.311,0.0,0.0,0.0,0.0,0.0,0.3312,0.0,0.0]},{"code":"gy","name":"Guyana","region":"Americas","aspect":1.67,"img":"flags/gy.png","colors":[{"name":"Green","pct":48.6,"hex":"#10b981"},{"name":"Red","pct":20.2,"hex":"#ef233c"},{"name":"Yellow","pct":18.7,"hex":"#facc15"},{"name":"White","pct":5.2,"hex":"#f8f9fa"}],"swatches":["#289868","#b81828","#f8c808","#f8f8f8"],"hist":[0.0315,0.0,0.0,0.0,0.4855,0.0,0.0,0.0,0.0,0.016,0.0,0.0,0.006,0.0015,0.0,0.0,0.012,0.007,0.2,0.0,0.0,0.0065,0.0,0.0,0.166,0.0145,0.0535]},{"code":"hk","name":"Hong Kong","region":"Asia","aspect":1.5,"img":"flags/hk.png","colors":[{"name":"Red","pct":89.5,"hex":"#ef233c"},{"name":"White","pct":7.8,"hex":"#f8f9fa"}],"swatches":["#e81828","#f8f8f8","#f8e8e8","#e82828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.891,0.0022,0.0,0.0,0.0238,0.0013,0.0,0.0,0.0818]},{"code":"hm","name":"Heard Island and McDonald Islands","region":"Antarctica","aspect":2.0,"img":"flags/hm.png","colors":[{"name":"Blue","pct":78.2,"hex":"#1d4ed8"},{"name":"Red","pct":8.8,"hex":"#ef233c"},{"name":"White","pct":8.5,"hex":"#f8f9fa"}],"swatches":["#080888","#f80808","#f8f8f8","#f82828"],"hist":[0.0,0.7702,0.0057,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0328,0.0,0.0,0.0,0.0877,0.0003,0.0,0.0,0.0107,0.006,0.0,0.0,0.0865]},{"code":"hn","name":"Honduras","region":"Americas","aspect":2.0,"img":"flags/hn.png","colors":[{"name":"Light Blue","pct":69.2,"hex":"#38bdf8"},{"name":"White","pct":30.8,"hex":"#f8f9fa"}],"swatches":["#08b8e8","#f8f8f8","#58d8e8","#e8f8f8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.645,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0465,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3085]},{"code":"hr","name":"Croatia","region":"Europe","aspect":2.0,"img":"flags/hr.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"Blue","pct":31.8,"hex":"#1d4ed8"},{"name":"White","pct":27.9,"hex":"#f8f9fa"},{"name":"Orange","pct":4.0,"hex":"#f97316"}],"swatches":["#181898","#f80808","#f8f8f8","#f85858"],"hist":[0.0,0.3147,0.0005,0.0,0.0018,0.0085,0.0,0.0,0.0,0.0013,0.0047,0.0,0.0008,0.0063,0.018,0.0,0.0,0.0,0.3155,0.0018,0.0,0.0,0.0428,0.0008,0.0,0.0,0.2828]},{"code":"ht","name":"Haiti","region":"Americas","aspect":1.67,"img":"flags/ht.png","colors":[{"name":"Blue","pct":43.0,"hex":"#1d4ed8"},{"name":"Red","pct":42.2,"hex":"#ef233c"},{"name":"White","pct":8.4,"hex":"#f8f9fa"},{"name":"Green","pct":3.3,"hex":"#10b981"}],"swatches":["#082898","#d81838","#f8f8f8","#181898"],"hist":[0.0005,0.4245,0.0055,0.0215,0.0008,0.0,0.0,0.0,0.0,0.002,0.0015,0.0,0.0125,0.0127,0.0015,0.0,0.0037,0.0,0.4205,0.0005,0.0,0.004,0.002,0.0008,0.0,0.0025,0.083]},{"code":"hu","name":"Hungary","region":"Europe","aspect":2.0,"img":"flags/hu.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"White","pct":32.0,"hex":"#f8f9fa"},{"name":"Green","pct":32.0,"hex":"#10b981"}],"swatches":["#c82838","#f8f8f8","#487858","#d87878"],"hist":[0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.32]},{"code":"id","name":"Indonesia","region":"Asia","aspect":1.5,"img":"flags/id.png","colors":[{"name":"Red","pct":50.0,"hex":"#ef233c"},{"name":"White","pct":50.0,"hex":"#f8f9fa"}],"swatches":["#f80808","#f8f8f8","#f82828","#f8d8d8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5]},{"code":"ie","name":"Ireland","region":"Europe","aspect":2.0,"img":"flags/ie.png","colors":[{"name":"White","pct":32.5,"hex":"#f8f9fa"},{"name":"Green","pct":32.5,"hex":"#10b981"},{"name":"Orange","pct":32.5,"hex":"#f97316"}],"swatches":["#189868","#f8f8f8","#f88838","#68b898"],"hist":[0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0125,0.325]},{"code":"il","name":"Israel","region":"Asia","aspect":1.37,"img":"flags/il.png","colors":[{"name":"White","pct":58.6,"hex":"#f8f9fa"},{"name":"Blue","pct":31.0,"hex":"#1d4ed8"},{"name":"Light Blue","pct":10.4,"hex":"#38bdf8"}],"swatches":["#f8f8f8","#0838b8","#a8b8e8","#7898d8"],"hist":[0.0,0.0,0.307,0.0,0.0,0.004,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.05,0.0,0.0,0.051,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.588]},{"code":"im","name":"Isle of Man","region":"Europe","aspect":2.0,"img":"flags/im.png","colors":[{"name":"Red","pct":95.3,"hex":"#ef233c"},{"name":"White","pct":3.3,"hex":"#f8f9fa"}],"swatches":["#c81828","#f8f8f8","#d8d8d8","#b82838"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.0,0.0,0.0008,0.0022,0.0,0.0,0.0,0.0,0.9445,0.002,0.0,0.003,0.0135,0.0,0.0005,0.003,0.0285]},{"code":"in","name":"India","region":"Asia","aspect":1.5,"img":"flags/in.png","colors":[{"name":"Green","pct":34.0,"hex":"#10b981"},{"name":"Orange","pct":34.0,"hex":"#f97316"},{"name":"White","pct":28.8,"hex":"#f8f9fa"}],"swatches":["#f86828","#086838","#f8f8f8","#f89868"],"hist":[0.0,0.007,0.004,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.021,0.0,0.0,0.0,0.0,0.0,0.0,0.32,0.02,0.0,0.0,0.0,0.288]},{"code":"io","name":"British Indian Ocean Territory","region":"Asia","aspect":2.0,"img":"flags/io.png","colors":[{"name":"Blue","pct":38.2,"hex":"#1d4ed8"},{"name":"White","pct":38.2,"hex":"#f8f9fa"},{"name":"Red","pct":9.3,"hex":"#ef233c"},{"name":"Light Blue","pct":7.9,"hex":"#38bdf8"}],"swatches":["#082868","#f8f8f8","#c81828","#c82848"],"hist":[0.0005,0.3435,0.0,0.0257,0.0333,0.0,0.0,0.0,0.0,0.0027,0.0,0.0,0.0018,0.0432,0.0432,0.0,0.0037,0.0173,0.0823,0.0073,0.0,0.006,0.0115,0.003,0.0,0.0032,0.3718]},{"code":"iq","name":"Iraq","region":"Asia","aspect":1.5,"img":"flags/iq.png","colors":[{"name":"Red","pct":34.0,"hex":"#ef233c"},{"name":"Black","pct":32.0,"hex":"#18181b"},{"name":"White","pct":28.9,"hex":"#f8f9fa"}],"swatches":["#c81828","#080808","#f8f8f8","#d86878"],"hist":[0.32,0.0,0.0,0.006,0.009,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0208,0.0,0.0,0.014,0.0022,0.32,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.288]},{"code":"ir","name":"Iran","region":"Asia","aspect":1.75,"img":"flags/ir.png","colors":[{"name":"White","pct":33.3,"hex":"#f8f9fa"},{"name":"Red","pct":28.8,"hex":"#ef233c"},{"name":"Green","pct":28.1,"hex":"#10b981"},{"name":"Orange","pct":4.9,"hex":"#f97316"}],"swatches":["#f8f8f8","#d80808","#289848","#e87878"],"hist":[0.0,0.0,0.0,0.2695,0.0013,0.0,0.0,0.0103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.038,0.0015,0.286,0.0,0.0,0.0,0.0548,0.0,0.0,0.0005,0.3382]},{"code":"is","name":"Iceland","region":"Europe","aspect":1.39,"img":"flags/is.png","colors":[{"name":"Blue","pct":62.7,"hex":"#1d4ed8"},{"name":"Red","pct":18.6,"hex":"#ef233c"},{"name":"White","pct":12.4,"hex":"#f8f9fa"},{"name":"Light Blue","pct":5.2,"hex":"#38bdf8"}],"swatches":["#085898","#d81838","#f8f8f8","#e85868"],"hist":[0.0,0.627,0.0,0.0,0.0,0.0095,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.043,0.1495,0.0005,0.0,0.0,0.0365,0.0105,0.0,0.0,0.1235]},{"code":"it","name":"Italy","region":"Europe","aspect":1.5,"img":"flags/it.png","colors":[{"name":"Red","pct":32.5,"hex":"#ef233c"},{"name":"White","pct":32.5,"hex":"#f8f9fa"},{"name":"Green","pct":32.5,"hex":"#10b981"}],"swatches":["#089848","#f8f8f8","#c82838","#58b888"],"hist":[0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.325,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.325]},{"code":"je","name":"Jersey","region":"Europe","aspect":1.67,"img":"flags/je.png","colors":[{"name":"White","pct":70.2,"hex":"#f8f9fa"},{"name":"Red","pct":23.6,"hex":"#ef233c"},{"name":"Orange","pct":4.4,"hex":"#f97316"}],"swatches":["#f8f8f8","#c81828","#f8e8e8","#d81838"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.225,0.0097,0.0,0.0155,0.0293,0.0,0.0065,0.004,0.71]},{"code":"jm","name":"Jamaica","region":"Americas","aspect":2.0,"img":"flags/jm.png","colors":[{"name":"Green","pct":33.2,"hex":"#10b981"},{"name":"Black","pct":31.6,"hex":"#18181b"},{"name":"Yellow","pct":30.7,"hex":"#facc15"}],"swatches":["#080808","#087848","#f8b818","#e8a818"],"hist":[0.324,0.0,0.0,0.324,0.0,0.0,0.0,0.0,0.0,0.004,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.025,0.0,0.0,0.303,0.0,0.0]},{"code":"jo","name":"Jordan","region":"Asia","aspect":2.0,"img":"flags/jo.png","colors":[{"name":"Green","pct":28.1,"hex":"#10b981"},{"name":"Black","pct":26.6,"hex":"#18181b"},{"name":"Red","pct":23.9,"hex":"#ef233c"},{"name":"White","pct":18.7,"hex":"#f8f9fa"}],"swatches":["#080808","#087838","#c81828","#f8f8f8"],"hist":[0.269,0.0,0.0,0.2672,0.0003,0.0,0.0,0.0,0.0,0.0085,0.0,0.0,0.0,0.026,0.0,0.0,0.0,0.0,0.2357,0.0015,0.0,0.0,0.0037,0.0,0.0,0.0,0.188]},{"code":"jp","name":"Japan","region":"Asia","aspect":1.5,"img":"flags/jp.png","colors":[{"name":"White","pct":80.7,"hex":"#f8f9fa"},{"name":"Red","pct":18.7,"hex":"#ef233c"}],"swatches":["#f8f8f8","#b80828","#f8e8e8","#c82848"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.18,0.0045,0.0,0.0,0.0065,0.002,0.0,0.0,0.807]},{"code":"ke","name":"Kenya","region":"Africa","aspect":1.5,"img":"flags/ke.png","colors":[{"name":"Black","pct":29.4,"hex":"#18181b"},{"name":"Green","pct":29.1,"hex":"#10b981"},{"name":"Red","pct":26.6,"hex":"#ef233c"},{"name":"White","pct":7.4,"hex":"#f8f9fa"}],"swatches":["#080808","#086808","#b80808","#f8f8f8"],"hist":[0.3025,0.0,0.0,0.288,0.0,0.0,0.0,0.0,0.0,0.012,0.0,0.0,0.0,0.005,0.0,0.0,0.0005,0.0,0.264,0.0,0.0,0.0,0.054,0.0,0.0,0.0,0.074]},{"code":"kg","name":"Kyrgyzstan","region":"Asia","aspect":1.67,"img":"flags/kg.png","colors":[{"name":"Red","pct":87.3,"hex":"#ef233c"},{"name":"Orange","pct":8.1,"hex":"#f97316"},{"name":"Yellow","pct":4.5,"hex":"#facc15"}],"swatches":["#f80808","#f83808","#f85808","#f84808"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.895,0.0,0.0,0.065,0.0,0.0,0.04,0.0,0.0]},{"code":"kh","name":"Cambodia","region":"Asia","aspect":1.56,"img":"flags/kh.png","colors":[{"name":"Blue","pct":48.0,"hex":"#1d4ed8"},{"name":"Red","pct":38.9,"hex":"#ef233c"},{"name":"White","pct":8.3,"hex":"#f8f9fa"},{"name":"Maroon","pct":4.0,"hex":"#9f1239"}],"swatches":["#0828a8","#e80828","#781868","#b8b8b8"],"hist":[0.0,0.48,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0403,0.0,0.0,0.0067,0.0,0.0,0.0,0.0,0.3735,0.003,0.0,0.0,0.0147,0.0013,0.0,0.0,0.0805]},{"code":"ki","name":"Kiribati","region":"Oceania","aspect":2.0,"img":"flags/ki.png","colors":[{"name":"Red","pct":44.5,"hex":"#ef233c"},{"name":"White","pct":23.3,"hex":"#f8f9fa"},{"name":"Blue","pct":21.9,"hex":"#1d4ed8"},{"name":"Yellow","pct":5.2,"hex":"#facc15"}],"swatches":["#c81818","#f8f8f8","#183878","#384888"],"hist":[0.0,0.201,0.0,0.0,0.0085,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0005,0.0127,0.0222,0.0,0.0,0.0008,0.4445,0.0,0.0,0.0225,0.0045,0.0,0.0485,0.001,0.2333]},{"code":"km","name":"Comoros","region":"Africa","aspect":1.67,"img":"flags/km.png","colors":[{"name":"Yellow","pct":22.6,"hex":"#facc15"},{"name":"Blue","pct":21.1,"hex":"#1d4ed8"},{"name":"Green","pct":21.1,"hex":"#10b981"},{"name":"White","pct":17.8,"hex":"#f8f9fa"}],"swatches":["#f8d808","#0838a8","#089838","#f8f8f8"],"hist":[0.0,0.2102,0.0,0.1973,0.0045,0.0,0.0,0.007,0.0,0.0,0.0147,0.0,0.002,0.0,0.0,0.0022,0.0103,0.0037,0.1375,0.01,0.0,0.0,0.0,0.0,0.2102,0.0147,0.1755]},{"code":"kn","name":"Saint Kitts and Nevis","region":"Americas","aspect":1.5,"img":"flags/kn.png","colors":[{"name":"Green","pct":28.2,"hex":"#10b981"},{"name":"Black","pct":27.6,"hex":"#18181b"},{"name":"Red","pct":27.6,"hex":"#ef233c"},{"name":"Yellow","pct":9.2,"hex":"#facc15"}],"swatches":["#c81828","#089838","#080808","#f8c808"],"hist":[0.2873,0.0,0.0,0.2757,0.0,0.0,0.0,0.0,0.0,0.004,0.0,0.0,0.0143,0.0073,0.0,0.0055,0.0,0.0,0.2775,0.0,0.0,0.0173,0.0,0.0,0.0862,0.0,0.025]},{"code":"kp","name":"North Korea","region":"Asia","aspect":2.0,"img":"flags/kp.png","colors":[{"name":"Red","pct":54.0,"hex":"#ef233c"},{"name":"Blue","pct":32.0,"hex":"#1d4ed8"},{"name":"White","pct":12.5,"hex":"#f8f9fa"}],"swatches":["#e81828","#0848a8","#e82828","#f8b8b8"],"hist":[0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.5387,0.0008,0.0,0.0,0.0118,0.0008,0.0,0.0,0.088]},{"code":"kr","name":"South Korea","region":"Asia","aspect":1.5,"img":"flags/kr.png","colors":[{"name":"White","pct":76.9,"hex":"#f8f9fa"},{"name":"Blue","pct":6.1,"hex":"#1d4ed8"},{"name":"Red","pct":6.0,"hex":"#ef233c"},{"name":"Black","pct":5.5,"hex":"#18181b"}],"swatches":["#f8f8f8","#0848a8","#c82838","#080808"],"hist":[0.059,0.059,0.0,0.0,0.001,0.002,0.0,0.0,0.0,0.001,0.0037,0.0,0.0,0.0375,0.0015,0.0,0.0,0.0022,0.0575,0.0005,0.0,0.0,0.0035,0.0013,0.0,0.0,0.7702]},{"code":"kw","name":"Kuwait","region":"Asia","aspect":2.0,"img":"flags/kw.png","colors":[{"name":"Green","pct":29.8,"hex":"#10b981"},{"name":"Red","pct":29.4,"hex":"#ef233c"},{"name":"White","pct":24.0,"hex":"#f8f9fa"},{"name":"Black","pct":16.3,"hex":"#18181b"}],"swatches":["#087838","#c81828","#f8f8f8","#080808"],"hist":[0.1675,0.0,0.0,0.28,0.0003,0.0,0.0,0.0,0.0,0.0032,0.0,0.0,0.0,0.0147,0.0,0.0,0.0,0.0,0.2792,0.0,0.0,0.0,0.015,0.0,0.0,0.0,0.24]},{"code":"ky","name":"Cayman Islands","region":"Americas","aspect":2.0,"img":"flags/ky.png","colors":[{"name":"Blue","pct":72.5,"hex":"#1d4ed8"},{"name":"Red","pct":10.4,"hex":"#ef233c"},{"name":"White","pct":9.1,"hex":"#f8f9fa"}],"swatches":["#082868","#c81828","#c82848","#f8e8e8"],"hist":[0.0025,0.7057,0.0,0.0073,0.0163,0.001,0.0,0.0,0.0,0.0045,0.0027,0.0,0.0037,0.0225,0.0083,0.0,0.0018,0.0077,0.0875,0.0073,0.0,0.0043,0.0127,0.0037,0.001,0.0187,0.0808]},{"code":"kz","name":"Kazakhstan","region":"Asia","aspect":2.0,"img":"flags/kz.png","colors":[{"name":"Light Blue","pct":92.2,"hex":"#38bdf8"},{"name":"Yellow","pct":7.3,"hex":"#facc15"}],"swatches":["#08a8c8","#f8e828","#08a8b8","#98d868"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0335,0.8528,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0737,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0318,0.0083,0.0]},{"code":"la","name":"Laos","region":"Asia","aspect":1.5,"img":"flags/la.png","colors":[{"name":"Red","pct":48.0,"hex":"#ef233c"},{"name":"Blue","pct":39.4,"hex":"#1d4ed8"},{"name":"White","pct":8.1,"hex":"#f8f9fa"},{"name":"Maroon","pct":4.0,"hex":"#9f1239"}],"swatches":["#c81828","#082868","#f8f8f8","#681848"],"hist":[0.0,0.391,0.0,0.0,0.002,0.0,0.0,0.0,0.0,0.04,0.0,0.0,0.0,0.001,0.004,0.0,0.0,0.001,0.48,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.081]},{"code":"lb","name":"Lebanon","region":"Asia","aspect":1.5,"img":"flags/lb.png","colors":[{"name":"Red","pct":48.0,"hex":"#ef233c"},{"name":"White","pct":40.2,"hex":"#f8f9fa"},{"name":"Green","pct":6.2,"hex":"#10b981"},{"name":"Orange","pct":4.0,"hex":"#f97316"}],"swatches":["#d81828","#f8f8f8","#e88898","#088838"],"hist":[0.0,0.0,0.0,0.0413,0.0145,0.0,0.0,0.0047,0.0,0.0,0.0,0.0,0.0003,0.0,0.0,0.0,0.0125,0.0063,0.48,0.0,0.0,0.0,0.0398,0.0,0.0,0.0,0.4007]},{"code":"lc","name":"Saint Lucia","region":"Americas","aspect":2.0,"img":"flags/lc.png","colors":[{"name":"Light Blue","pct":86.5,"hex":"#38bdf8"},{"name":"Yellow","pct":6.9,"hex":"#facc15"}],"swatches":["#68c8f8","#f8d818","#080808","#f8f8f8"],"hist":[0.0325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0025,0.0055,0.0,0.0,0.0,0.859,0.0,0.0,0.0,0.002,0.0,0.0,0.0605,0.0085,0.0295]},{"code":"li","name":"Liechtenstein","region":"Europe","aspect":1.67,"img":"flags/li.png","colors":[{"name":"Red","pct":50.0,"hex":"#ef233c"},{"name":"Blue","pct":46.0,"hex":"#1d4ed8"}],"swatches":["#c81828","#082878","#182878","#b81838"],"hist":[0.007,0.4595,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0008,0.0,0.0,0.0192,0.0,0.0,0.0,0.0,0.0,0.5,0.0,0.0,0.008,0.0,0.0,0.0055,0.0,0.0]},{"code":"lk","name":"Sri Lanka","region":"Asia","aspect":2.0,"img":"flags/lk.png","colors":[{"name":"Yellow","pct":35.2,"hex":"#facc15"},{"name":"Maroon","pct":32.1,"hex":"#9f1239"},{"name":"Orange","pct":21.1,"hex":"#f97316"},{"name":"Green","pct":10.0,"hex":"#10b981"}],"swatches":["#f8b828","#881838","#085848","#e87808"],"hist":[0.0895,0.0,0.0,0.0105,0.0,0.0,0.0,0.0,0.0,0.3162,0.0,0.0,0.0155,0.0,0.0,0.0,0.0,0.0,0.01,0.0,0.0,0.2203,0.0,0.0,0.338,0.0,0.0]},{"code":"lr","name":"Liberia","region":"Africa","aspect":1.9,"img":"flags/lr.png","colors":[{"name":"Red","pct":49.1,"hex":"#ef233c"},{"name":"White","pct":37.2,"hex":"#f8f9fa"},{"name":"Blue","pct":9.7,"hex":"#1d4ed8"},{"name":"Orange","pct":3.5,"hex":"#f97316"}],"swatches":["#b80838","#f8f8f8","#082868","#d87888"],"hist":[0.0,0.09,0.0,0.0,0.0065,0.0,0.0,0.0,0.0,0.0025,0.0005,0.0,0.0,0.0013,0.0015,0.0,0.0,0.0008,0.385,0.07,0.0,0.0,0.0707,0.0,0.0,0.0,0.3713]},{"code":"ls","name":"Lesotho","region":"Africa","aspect":1.5,"img":"flags/ls.png","colors":[{"name":"White","pct":35.9,"hex":"#f8f9fa"},{"name":"Green","pct":30.4,"hex":"#10b981"},{"name":"Blue","pct":30.0,"hex":"#1d4ed8"}],"swatches":["#f8f8f8","#081888","#089848","#283898"],"hist":[0.0288,0.3,0.0,0.28,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0118,0.0,0.0,0.0,0.0005,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.359]},{"code":"lt","name":"Lithuania","region":"Europe","aspect":1.67,"img":"flags/lt.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"Green","pct":32.0,"hex":"#10b981"},{"name":"Yellow","pct":32.0,"hex":"#facc15"}],"swatches":["#f8b818","#086848","#c82828","#a89828"],"hist":[0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0]},{"code":"lu","name":"Luxembourg","region":"Europe","aspect":1.67,"img":"flags/lu.png","colors":[{"name":"Light Blue","pct":34.0,"hex":"#38bdf8"},{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"White","pct":32.0,"hex":"#f8f9fa"}],"swatches":["#e82838","#f8f8f8","#08a8d8","#f87878"],"hist":[0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.32,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.32]},{"code":"lv","name":"Latvia","region":"Europe","aspect":2.0,"img":"flags/lv.png","colors":[{"name":"Maroon","pct":76.0,"hex":"#9f1239"},{"name":"White","pct":20.0,"hex":"#f8f9fa"},{"name":"Red","pct":4.0,"hex":"#ef233c"}],"swatches":["#982838","#f8f8f8","#a83848","#f8e8e8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.8,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.2]},{"code":"ly","name":"Libya","region":"Africa","aspect":2.0,"img":"flags/ly.png","colors":[{"name":"Black","pct":46.6,"hex":"#18181b"},{"name":"Green","pct":26.3,"hex":"#10b981"},{"name":"Red","pct":24.0,"hex":"#ef233c"}],"swatches":["#080808","#e80818","#289848","#780808"],"hist":[0.4865,0.0,0.0,0.24,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.005,0.0,0.0,0.0,0.0,0.24,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0085]},{"code":"ma","name":"Morocco","region":"Africa","aspect":1.5,"img":"flags/ma.png","colors":[{"name":"Red","pct":95.2,"hex":"#ef233c"}],"swatches":["#c82828","#b82828","#285838","#185838"],"hist":[0.014,0.0,0.0,0.015,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.951,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},{"code":"mc","name":"Monaco","region":"Europe","aspect":1.25,"img":"flags/mc.png","colors":[{"name":"Red","pct":50.0,"hex":"#ef233c"},{"name":"White","pct":50.0,"hex":"#f8f9fa"}],"swatches":["#c81828","#f8f8f8","#d82848","#f8e8e8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5]},{"code":"md","name":"Moldova","region":"Europe","aspect":2.0,"img":"flags/md.png","colors":[{"name":"Red","pct":34.2,"hex":"#ef233c"},{"name":"Blue","pct":32.9,"hex":"#1d4ed8"},{"name":"Yellow","pct":24.2,"hex":"#facc15"},{"name":"Maroon","pct":4.5,"hex":"#9f1239"}],"swatches":["#0848a8","#c80828","#f8d808","#f8c808"],"hist":[0.0075,0.005,0.325,0.0015,0.0,0.0,0.0,0.0,0.0,0.0165,0.0,0.0,0.0403,0.0127,0.0,0.0,0.0,0.0,0.3405,0.0,0.0,0.0088,0.0,0.0,0.2422,0.0,0.0]},{"code":"me","name":"Montenegro","region":"Europe","aspect":2.0,"img":"flags/me.png","colors":[{"name":"Red","pct":73.3,"hex":"#ef233c"},{"name":"Yellow","pct":15.7,"hex":"#facc15"},{"name":"Orange","pct":10.0,"hex":"#f97316"}],"swatches":["#e80808","#f8c808","#f8a808","#f86808"],"hist":[0.0,0.0,0.0,0.0,0.0022,0.0003,0.002,0.0,0.0,0.0,0.0,0.0,0.0035,0.0037,0.0,0.0013,0.0,0.0,0.7378,0.0,0.0,0.123,0.0,0.0,0.1263,0.0,0.0]},{"code":"mf","name":"Saint Martin","region":"Americas","aspect":1.5,"img":"flags/mf.png","colors":[{"name":"Red","pct":33.8,"hex":"#ef233c"},{"name":"Blue","pct":33.8,"hex":"#1d4ed8"},{"name":"White","pct":32.5,"hex":"#f8f9fa"}],"swatches":["#082858","#f8f8f8","#c81828","#587888"],"hist":[0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.325]},{"code":"mg","name":"Madagascar","region":"Africa","aspect":1.5,"img":"flags/mg.png","colors":[{"name":"White","pct":33.1,"hex":"#f8f9fa"},{"name":"Red","pct":33.1,"hex":"#ef233c"},{"name":"Green","pct":33.1,"hex":"#10b981"}],"swatches":["#f8f8f8","#f83838","#087838","#d84838"],"hist":[0.0,0.0,0.0,0.3312,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.006,0.3312,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3315]},{"code":"mh","name":"Marshall Islands","region":"Oceania","aspect":1.9,"img":"flags/mh.png","colors":[{"name":"Blue","pct":73.0,"hex":"#1d4ed8"},{"name":"White","pct":12.4,"hex":"#f8f9fa"},{"name":"Orange","pct":9.5,"hex":"#f97316"},{"name":"Light Blue","pct":3.1,"hex":"#38bdf8"}],"swatches":["#083898","#f8f8f8","#d87808","#184898"],"hist":[0.0,0.7147,0.0,0.0,0.0088,0.0143,0.0,0.0,0.0,0.0015,0.0013,0.0,0.0073,0.0,0.019,0.0,0.0,0.007,0.0,0.0,0.0,0.095,0.0015,0.0,0.0,0.0065,0.1232]},{"code":"mk","name":"North Macedonia","region":"Europe","aspect":2.0,"img":"flags/mk.png","colors":[{"name":"Red","pct":64.3,"hex":"#ef233c"},{"name":"Yellow","pct":30.1,"hex":"#facc15"},{"name":"Orange","pct":5.6,"hex":"#f97316"}],"swatches":["#d82828","#f8e828","#d83828","#f8d828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.643,0.0,0.0,0.0633,0.0,0.0,0.2938,0.0,0.0]},{"code":"ml","name":"Mali","region":"Africa","aspect":1.5,"img":"flags/ml.png","colors":[{"name":"Green","pct":33.8,"hex":"#10b981"},{"name":"Red","pct":32.5,"hex":"#ef233c"},{"name":"Yellow","pct":32.5,"hex":"#facc15"}],"swatches":["#18b838","#c81828","#f8d818","#68b828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.3375,0.0,0.0,0.0,0.0,0.0,0.325,0.0,0.0]},{"code":"mm","name":"Myanmar","region":"Asia","aspect":1.5,"img":"flags/mm.png","colors":[{"name":"Yellow","pct":33.5,"hex":"#facc15"},{"name":"Red","pct":31.6,"hex":"#ef233c"},{"name":"Green","pct":24.4,"hex":"#10b981"},{"name":"White","pct":9.8,"hex":"#f8f9fa"}],"swatches":["#f8c808","#e82838","#38b838","#f8f8f8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.241,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0005,0.005,0.0,0.2985,0.0015,0.0,0.0155,0.005,0.0,0.3325,0.0015,0.099]},{"code":"mn","name":"Mongolia","region":"Asia","aspect":2.0,"img":"flags/mn.png","colors":[{"name":"Red","pct":56.5,"hex":"#ef233c"},{"name":"Blue","pct":32.5,"hex":"#1d4ed8"},{"name":"Orange","pct":4.3,"hex":"#f97316"},{"name":"Yellow","pct":4.2,"hex":"#facc15"}],"swatches":["#d82838","#0868b8","#883858","#f8d808"],"hist":[0.0,0.0,0.0,0.0,0.0,0.325,0.0,0.0,0.0,0.0,0.025,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5683,0.0,0.0,0.0413,0.0,0.0,0.0405,0.0,0.0]},{"code":"mo","name":"Macau","region":"Asia","aspect":1.5,"img":"flags/mo.png","colors":[{"name":"Green","pct":89.8,"hex":"#10b981"},{"name":"White","pct":5.8,"hex":"#f8f9fa"},{"name":"Light Blue","pct":4.0,"hex":"#38bdf8"}],"swatches":["#087868","#f8f8f8","#187868","#68a898"],"hist":[0.0,0.0,0.0,0.0005,0.894,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005,0.012,0.0,0.0015,0.006,0.024,0.0,0.0,0.0,0.0,0.0,0.0,0.003,0.0,0.054]},{"code":"mp","name":"Northern Mariana Islands","region":"Oceania","aspect":2.0,"img":"flags/mp.png","colors":[{"name":"Blue","pct":81.0,"hex":"#1d4ed8"},{"name":"White","pct":10.2,"hex":"#f8f9fa"},{"name":"Light Blue","pct":4.5,"hex":"#38bdf8"}],"swatches":["#0838a8","#f8f8f8","#083898","#b8b8b8"],"hist":[0.0008,0.7923,0.0035,0.0035,0.0127,0.01,0.0,0.0,0.0,0.0003,0.0,0.0,0.0037,0.02,0.0185,0.0,0.0027,0.007,0.004,0.0,0.0,0.0032,0.013,0.0063,0.0,0.0032,0.0953]},{"code":"mq","name":"Martinique","region":"Americas","aspect":1.5,"img":"flags/mq.png","colors":[{"name":"Green","pct":38.4,"hex":"#10b981"},{"name":"Black","pct":35.7,"hex":"#18181b"},{"name":"Red","pct":24.6,"hex":"#ef233c"}],"swatches":["#281818","#08a858","#e81828","#089848"],"hist":[0.3713,0.0,0.0,0.3738,0.0,0.0,0.0,0.0,0.0,0.0073,0.0,0.0,0.0025,0.0,0.0,0.0,0.0,0.0,0.2452,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},{"code":"mr","name":"Mauritania","region":"Africa","aspect":1.5,"img":"flags/mr.png","colors":[{"name":"Green","pct":54.8,"hex":"#10b981"},{"name":"Red","pct":40.0,"hex":"#ef233c"},{"name":"Yellow","pct":5.2,"hex":"#facc15"}],"swatches":["#08a858","#d81818","#b82828","#189858"],"hist":[0.0,0.0,0.0,0.04,0.48,0.0,0.019,0.0035,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.4,0.0,0.0,0.0,0.0,0.0,0.045,0.0,0.0]},{"code":"ms","name":"Montserrat","region":"Americas","aspect":2.0,"img":"flags/ms.png","colors":[{"name":"Blue","pct":71.4,"hex":"#1d4ed8"},{"name":"Red","pct":10.1,"hex":"#ef233c"},{"name":"White","pct":7.8,"hex":"#f8f9fa"},{"name":"Light Blue","pct":6.6,"hex":"#38bdf8"}],"swatches":["#082868","#c81828","#c82848","#08a8d8"],"hist":[0.0027,0.6973,0.0,0.0083,0.0138,0.0465,0.0,0.0,0.0,0.0208,0.0003,0.0,0.0053,0.017,0.0103,0.0,0.0005,0.0073,0.0805,0.007,0.0,0.0005,0.008,0.0037,0.0,0.0008,0.0698]},{"code":"mt","name":"Malta","region":"Europe","aspect":1.5,"img":"flags/mt.png","colors":[{"name":"Red","pct":50.0,"hex":"#ef233c"},{"name":"White","pct":49.9,"hex":"#f8f9fa"}],"swatches":["#c81828","#f8f8f8","#f8e8e8","#d83848"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5,0.0,0.0,0.0,0.0015,0.002,0.0,0.0,0.4965]},{"code":"mu","name":"Mauritius","region":"Africa","aspect":1.5,"img":"flags/mu.png","colors":[{"name":"Green","pct":26.0,"hex":"#10b981"},{"name":"Red","pct":24.0,"hex":"#ef233c"},{"name":"Blue","pct":24.0,"hex":"#1d4ed8"},{"name":"Yellow","pct":24.0,"hex":"#facc15"}],"swatches":["#e82838","#08a858","#182868","#f8d808"],"hist":[0.0,0.24,0.0,0.24,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.24,0.0,0.0,0.0,0.0,0.0,0.24,0.0,0.0]},{"code":"mv","name":"Maldives","region":"Asia","aspect":1.5,"img":"flags/mv.png","colors":[{"name":"Red","pct":64.9,"hex":"#ef233c"},{"name":"Green","pct":30.9,"hex":"#10b981"}],"swatches":["#d81838","#087838","#684838","#c81838"],"hist":[0.0,0.0,0.0,0.3035,0.0055,0.0,0.0,0.0,0.0,0.027,0.0,0.0,0.0,0.0005,0.0,0.0,0.002,0.001,0.649,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0115]},{"code":"mw","name":"Malawi","region":"Africa","aspect":1.5,"img":"flags/mw.png","colors":[{"name":"Red","pct":34.3,"hex":"#ef233c"},{"name":"Green","pct":32.0,"hex":"#10b981"},{"name":"Black","pct":24.0,"hex":"#18181b"},{"name":"Maroon","pct":9.7,"hex":"#9f1239"}],"swatches":["#c81828","#389838","#080808","#480808"],"hist":[0.2732,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0437,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.343,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]},{"code":"mx","name":"Mexico","region":"Americas","aspect":1.75,"img":"flags/mx.png","colors":[{"name":"Green","pct":33.9,"hex":"#10b981"},{"name":"Red","pct":33.8,"hex":"#ef233c"},{"name":"White","pct":28.6,"hex":"#f8f9fa"}],"swatches":["#086848","#c81828","#f8f8f8","#589888"],"hist":[0.001,0.0,0.0,0.325,0.001,0.0,0.0,0.0,0.0,0.0103,0.0,0.0,0.0047,0.0185,0.0,0.0,0.001,0.0035,0.325,0.0,0.0,0.0022,0.0177,0.0,0.0,0.012,0.278]},{"code":"my","name":"Malaysia","region":"Asia","aspect":2.0,"img":"flags/my.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"White","pct":30.0,"hex":"#f8f9fa"},{"name":"Blue","pct":22.6,"hex":"#1d4ed8"},{"name":"Yellow","pct":6.3,"hex":"#facc15"}],"swatches":["#c80808","#f8f8f8","#080868","#c81818"],"hist":[0.0125,0.223,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015,0.0,0.0,0.0095,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0088,0.05,0.0,0.0213,0.0,0.34]},{"code":"mz","name":"Mozambique","region":"Africa","aspect":1.5,"img":"flags/mz.png","colors":[{"name":"Yellow","pct":28.6,"hex":"#facc15"},{"name":"Green","pct":26.2,"hex":"#10b981"},{"name":"Black","pct":20.7,"hex":"#18181b"},{"name":"Red","pct":16.8,"hex":"#ef233c"}],"swatches":["#f8e808","#087868","#080808","#d81838"],"hist":[0.213,0.0008,0.0,0.0,0.2587,0.0,0.0,0.0,0.0,0.0125,0.0003,0.0,0.0008,0.0185,0.0,0.0,0.0,0.0,0.1665,0.0005,0.0,0.009,0.0003,0.0,0.2707,0.0158,0.0328]},{"code":"na","name":"Namibia","region":"Africa","aspect":1.5,"img":"flags/na.png","colors":[{"name":"Green","pct":33.1,"hex":"#10b981"},{"name":"Blue","pct":27.4,"hex":"#1d4ed8"},{"name":"Red","pct":27.4,"hex":"#ef233c"},{"name":"White","pct":7.0,"hex":"#f8f9fa"}],"swatches":["#089848","#083888","#d81838","#f8f8f8"],"hist":[0.0,0.271,0.0,0.3105,0.0138,0.0,0.0,0.0022,0.0,0.0,0.0,0.0,0.014,0.0,0.006,0.0,0.004,0.0055,0.2605,0.009,0.0,0.0035,0.0125,0.004,0.017,0.0,0.0665]},{"code":"nc","name":"New Caledonia","region":"Oceania","aspect":2.0,"img":"flags/nc.png","colors":[{"name":"Green","pct":30.8,"hex":"#10b981"},{"name":"Blue","pct":30.2,"hex":"#1d4ed8"},{"name":"Red","pct":21.2,"hex":"#ef233c"},{"name":"Yellow","pct":13.6,"hex":"#facc15"}],"swatches":["#0838a8","#089848","#e84838","#f8e808"],"hist":[0.0238,0.0165,0.284,0.3023,0.0015,0.0,0.0005,0.0,0.0,0.001,0.0003,0.0,0.0115,0.002,0.0,0.0015,0.0,0.0,0.2145,0.0,0.0,0.006,0.0,0.0,0.1348,0.0,0.0]},{"code":"ne","name":"Niger","region":"Africa","aspect":1.17,"img":"flags/ne.png","colors":[{"name":"Orange","pct":39.3,"hex":"#f97316"},{"name":"Green","pct":34.0,"hex":"#10b981"},{"name":"White","pct":26.2,"hex":"#f8f9fa"}],"swatches":["#e85808","#08b828","#f8f8f8","#e88858"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.363,0.0,0.0,0.008,0.023,0.0,0.0,0.002,0.264]},{"code":"nf","name":"Norfolk Island","region":"Oceania","aspect":2.0,"img":"flags/nf.png","colors":[{"name":"Green","pct":67.4,"hex":"#10b981"},{"name":"White","pct":30.1,"hex":"#f8f9fa"}],"swatches":["#087838","#f8f8f8","#a8c8b8","#188848"],"hist":[0.0,0.0,0.0,0.6362,0.0285,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0075,0.0,0.0,0.025,0.031,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.2717]},{"code":"ng","name":"Nigeria","region":"Africa","aspect":2.0,"img":"flags/ng.png","colors":[{"name":"Green","pct":65.0,"hex":"#10b981"},{"name":"White","pct":32.5,"hex":"#f8f9fa"}],"swatches":["#088858","#f8f8f8","#58b888"],"hist":[0.0,0.0,0.0,0.65,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.025,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.325]},{"code":"ni","name":"Nicaragua","region":"Americas","aspect":1.67,"img":"flags/ni.png","colors":[{"name":"Blue","pct":64.0,"hex":"#1d4ed8"},{"name":"White","pct":31.2,"hex":"#f8f9fa"},{"name":"Light Blue","pct":4.4,"hex":"#38bdf8"}],"swatches":["#0868c8","#f8f8f8","#5898d8","#f8f8d8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.64,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.04,0.001,0.0005,0.0037,0.0,0.0,0.0,0.0,0.0,0.0,0.0008,0.002,0.31]},{"code":"nl","name":"Netherlands","region":"Europe","aspect":1.5,"img":"flags/nl.png","colors":[{"name":"Red","pct":34.0,"hex":"#ef233c"},{"name":"White","pct":32.0,"hex":"#f8f9fa"},{"name":"Blue","pct":32.0,"hex":"#1d4ed8"}],"swatches":["#a81828","#f8f8f8","#284888","#c86878"],"hist":[0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.32]},{"code":"no","name":"Norway","region":"Europe","aspect":1.37,"img":"flags/no.png","colors":[{"name":"Red","pct":62.6,"hex":"#ef233c"},{"name":"Blue","pct":19.8,"hex":"#1d4ed8"},{"name":"White","pct":16.5,"hex":"#f8f9fa"}],"swatches":["#b80828","#082858","#f8f8f8","#c8d8d8"],"hist":[0.0,0.186,0.0,0.0,0.011,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011,0.0,0.0,0.0,0.0,0.576,0.041,0.0,0.0,0.01,0.0,0.0,0.0,0.165]},{"code":"np","name":"Nepal","region":"Asia","aspect":0.82,"img":"flags/np.png","colors":[{"name":"Red","pct":57.7,"hex":"#ef233c"},{"name":"Blue","pct":22.6,"hex":"#1d4ed8"},{"name":"White","pct":12.2,"hex":"#f8f9fa"},{"name":"Maroon","pct":5.1,"hex":"#9f1239"}],"swatches":["#d81838","#083898","#f8f8f8","#782868"],"hist":[0.0,0.2265,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0047,0.0467,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5505,0.0201,0.0,0.0,0.0214,0.0051,0.0,0.0,0.125]},{"code":"nr","name":"Nauru","region":"Oceania","aspect":2.0,"img":"flags/nr.png","colors":[{"name":"Blue","pct":89.6,"hex":"#1d4ed8"},{"name":"Yellow","pct":8.0,"hex":"#facc15"}],"swatches":["#082868","#e8b838","#f8c828","#283858"],"hist":[0.0,0.894,0.0,0.0,0.002,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.001,0.0035,0.0,0.0,0.0015,0.0,0.0,0.0,0.0,0.0,0.0,0.08,0.0,0.018]},{"code":"nu","name":"Niue","region":"Oceania","aspect":2.0,"img":"flags/nu.png","colors":[{"name":"Yellow","pct":75.7,"hex":"#facc15"},{"name":"White","pct":7.5,"hex":"#f8f9fa"},{"name":"Red","pct":7.0,"hex":"#ef233c"},{"name":"Blue","pct":6.8,"hex":"#1d4ed8"}],"swatches":["#f8d808","#082868","#f8e8e8","#c81828"],"hist":[0.0005,0.0595,0.0,0.0005,0.0025,0.0,0.0,0.0,0.0,0.002,0.001,0.0,0.003,0.0103,0.0067,0.0,0.0,0.0065,0.0595,0.0065,0.0,0.0065,0.008,0.0027,0.7545,0.0008,0.069]},{"code":"nz","name":"New Zealand","region":"Oceania","aspect":2.0,"img":"flags/nz.png","colors":[{"name":"Blue","pct":80.1,"hex":"#1d4ed8"},{"name":"Red","pct":9.8,"hex":"#ef233c"},{"name":"White","pct":7.7,"hex":"#f8f9fa"}],"swatches":["#082868","#c81828","#c82848","#f8e8e8"],"hist":[0.0,0.7865,0.0,0.0,0.0055,0.0,0.0,0.0,0.0,0.0,0.0003,0.0,0.0,0.0187,0.0067,0.0,0.0,0.0065,0.083,0.0077,0.0,0.0,0.012,0.0037,0.0,0.0,0.0693]},{"code":"om","name":"Oman","region":"Asia","aspect":1.75,"img":"flags/om.png","colors":[{"name":"Red","pct":52.8,"hex":"#ef233c"},{"name":"Green","pct":22.5,"hex":"#10b981"},{"name":"White","pct":21.4,"hex":"#f8f9fa"}],"swatches":["#d81828","#f8f8f8","#087838","#f8b8b8"],"hist":[0.0,0.0,0.0,0.2253,0.0,0.0,0.0,0.0,0.0,0.004,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5242,0.0008,0.0,0.0,0.0182,0.0,0.0,0.0,0.2275]},{"code":"pa","name":"Panama","region":"Americas","aspect":1.5,"img":"flags/pa.png","colors":[{"name":"White","pct":46.9,"hex":"#f8f9fa"},{"name":"Red","pct":26.3,"hex":"#ef233c"},{"name":"Blue","pct":26.3,"hex":"#1d4ed8"}],"swatches":["#f8f8f8","#082858","#d81818","#f8e8e8"],"hist":[0.0,0.2605,0.0,0.0,0.002,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.001,0.0,0.0,0.0,0.2605,0.002,0.0,0.0,0.003,0.0,0.0,0.0,0.469]},{"code":"pe","name":"Peru","region":"Americas","aspect":1.5,"img":"flags/pe.png","colors":[{"name":"Red","pct":67.5,"hex":"#ef233c"},{"name":"White","pct":32.5,"hex":"#f8f9fa"}],"swatches":["#d81828","#f8f8f8","#e86868"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.65,0.0,0.0,0.0,0.025,0.0,0.0,0.0,0.325]},{"code":"pf","name":"French Polynesia","region":"Oceania","aspect":1.5,"img":"flags/pf.png","colors":[{"name":"Red","pct":50.0,"hex":"#ef233c"},{"name":"White","pct":39.4,"hex":"#f8f9fa"},{"name":"Orange","pct":5.3,"hex":"#f97316"}],"swatches":["#c81828","#f8f8f8","#e88898","#f8b858"],"hist":[0.0,0.0018,0.0,0.0,0.0008,0.0103,0.0,0.0,0.0,0.0008,0.0008,0.0,0.0,0.0018,0.0105,0.0,0.0,0.0013,0.4958,0.0003,0.0,0.0095,0.0517,0.0003,0.0083,0.0152,0.3912]},{"code":"pg","name":"Papua New Guinea","region":"Oceania","aspect":1.33,"img":"flags/pg.png","colors":[{"name":"Black","pct":47.1,"hex":"#18181b"},{"name":"Red","pct":43.0,"hex":"#ef233c"},{"name":"Yellow","pct":4.3,"hex":"#facc15"}],"swatches":["#080808","#c81828","#f8d818","#f8c818"],"hist":[0.477,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0092,0.0,0.0,0.0,0.0,0.4303,0.0,0.0,0.0175,0.0,0.0,0.0423,0.0,0.0112]},{"code":"ph","name":"Philippines","region":"Asia","aspect":2.0,"img":"flags/ph.png","colors":[{"name":"Red","pct":39.0,"hex":"#ef233c"},{"name":"Blue","pct":38.9,"hex":"#1d4ed8"},{"name":"White","pct":16.4,"hex":"#f8f9fa"},{"name":"Yellow","pct":5.0,"hex":"#facc15"}],"swatches":["#0838a8","#c81828","#f8f8f8","#f8d818"],"hist":[0.0,0.3837,0.0032,0.0,0.0,0.003,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0027,0.0,0.0,0.001,0.3885,0.001,0.0,0.0,0.0035,0.0003,0.0195,0.024,0.1695]},{"code":"pk","name":"Pakistan","region":"Asia","aspect":1.5,"img":"flags/pk.png","colors":[{"name":"Green","pct":68.7,"hex":"#10b981"},{"name":"White","pct":30.8,"hex":"#f8f9fa"}],"swatches":["#084818","#f8f8f8","#d8e8e8","#285838"],"hist":[0.657,0.0,0.0,0.02,0.0035,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.0,0.0,0.0018,0.0018,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.306]},{"code":"pl","name":"Poland","region":"Europe","aspect":1.6,"img":"flags/pl.png","colors":[{"name":"Red","pct":50.0,"hex":"#ef233c"},{"name":"White","pct":50.0,"hex":"#f8f9fa"}],"swatches":["#f8f8f8","#d81838","#f8e8e8","#e83858"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5]},{"code":"pm","name":"Saint Pierre and Miquelon","region":"Americas","aspect":1.5,"img":"flags/pm.png","colors":[{"name":"Light Blue","pct":42.9,"hex":"#38bdf8"},{"name":"White","pct":10.2,"hex":"#f8f9fa"},{"name":"Yellow","pct":9.8,"hex":"#facc15"},{"name":"Orange","pct":8.7,"hex":"#f97316"}],"swatches":["#0898c8","#f8f8f8","#f8c808","#c80808"],"hist":[0.0225,0.0055,0.0,0.041,0.0645,0.379,0.0,0.0,0.011,0.0138,0.0,0.0,0.06,0.0213,0.0018,0.0,0.0003,0.0338,0.0775,0.0,0.0,0.0638,0.0092,0.0,0.093,0.0005,0.1017]},{"code":"pn","name":"Pitcairn Islands","region":"Oceania","aspect":2.0,"img":"flags/pn.png","colors":[{"name":"Blue","pct":68.8,"hex":"#1d4ed8"},{"name":"Red","pct":9.0,"hex":"#ef233c"},{"name":"White","pct":7.7,"hex":"#f8f9fa"},{"name":"Green","pct":7.5,"hex":"#10b981"}],"swatches":["#082868","#c81828","#c82848","#f8e8e8"],"hist":[0.0235,0.6613,0.0,0.0355,0.007,0.0125,0.0,0.0,0.0,0.0013,0.0003,0.0,0.0307,0.0215,0.0063,0.0037,0.0015,0.0065,0.0805,0.007,0.0,0.001,0.0077,0.0037,0.0185,0.0,0.07]},{"code":"pr","name":"Puerto Rico","region":"Americas","aspect":1.5,"img":"flags/pr.png","colors":[{"name":"Red","pct":44.6,"hex":"#ef233c"},{"name":"White","pct":27.4,"hex":"#f8f9fa"},{"name":"Blue","pct":25.2,"hex":"#1d4ed8"}],"swatches":["#e80808","#0848f8","#f8f8f8","#f8d8d8"],"hist":[0.0,0.0005,0.2512,0.0,0.0,0.009,0.0,0.0,0.0,0.001,0.0055,0.0,0.0,0.0,0.0053,0.0,0.0,0.0045,0.4455,0.0005,0.0,0.0,0.0,0.0,0.0,0.0,0.277]},{"code":"ps","name":"Palestine","region":"Asia","aspect":2.0,"img":"flags/ps.png","colors":[{"name":"Green","pct":30.1,"hex":"#10b981"},{"name":"Black","pct":28.4,"hex":"#18181b"},{"name":"White","pct":23.0,"hex":"#f8f9fa"},{"name":"Red","pct":16.2,"hex":"#ef233c"}],"swatches":["#080808","#089838","#f8f8f8","#e82838"],"hist":[0.285,0.0,0.0,0.285,0.0,0.0,0.0,0.0,0.0,0.0032,0.0,0.0,0.002,0.0152,0.0,0.0,0.0155,0.0,0.16,0.001,0.0,0.0,0.003,0.0,0.0,0.0,0.23]},{"code":"pt","name":"Portugal","region":"Europe","aspect":1.5,"img":"flags/pt.png","colors":[{"name":"Red","pct":56.6,"hex":"#ef233c"},{"name":"Green","pct":34.7,"hex":"#10b981"},{"name":"Orange","pct":3.3,"hex":"#f97316"},{"name":"Yellow","pct":3.2,"hex":"#facc15"}],"swatches":["#f80808","#086808","#f8f8f8","#c8c808"],"hist":[0.0,0.0,0.0,0.3425,0.0,0.0022,0.0,0.0,0.0,0.0,0.0,0.0,0.0092,0.0,0.0027,0.0047,0.0,0.0,0.567,0.0,0.0,0.026,0.0047,0.0,0.0262,0.0,0.0145]},{"code":"pw","name":"Palau","region":"Oceania","aspect":1.6,"img":"flags/pw.png","colors":[{"name":"Light Blue","pct":82.3,"hex":"#38bdf8"},{"name":"Yellow","pct":17.7,"hex":"#facc15"}],"swatches":["#0898f8","#f8f808","#18a8e8","#d8e828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.817,0.0,0.0,0.002,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.172,0.0,0.0]},{"code":"py","name":"Paraguay","region":"Americas","aspect":1.82,"img":"flags/py.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"Blue","pct":32.0,"hex":"#1d4ed8"},{"name":"White","pct":31.1,"hex":"#f8f9fa"}],"swatches":["#d82818","#0838a8","#f8f8f8","#e87868"],"hist":[0.0,0.32,0.0,0.0,0.0005,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0053,0.02,0.0,0.001,0.001,0.32,0.0,0.0,0.0,0.02,0.0,0.0,0.001,0.3113]},{"code":"qa","name":"Qatar","region":"Asia","aspect":2.54,"img":"flags/qa.png","colors":[{"name":"Maroon","pct":65.5,"hex":"#9f1239"},{"name":"White","pct":33.1,"hex":"#f8f9fa"}],"swatches":["#881838","#f8f8f8","#982848","#f8e8e8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.654,0.0045,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011,0.0005,0.0,0.0,0.33]},{"code":"re","name":"R\u00e9union","region":"Africa","aspect":1.5,"img":"flags/re.png","colors":[{"name":"Light Blue","pct":64.2,"hex":"#38bdf8"},{"name":"Red","pct":24.8,"hex":"#ef233c"},{"name":"Yellow","pct":10.1,"hex":"#facc15"}],"swatches":["#3868f8","#f80808","#f8f808","#4878e8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.6002,0.0,0.0,0.0,0.0,0.007,0.005,0.0,0.0135,0.0213,0.0,0.014,0.0,0.2455,0.002,0.0,0.0,0.0,0.0,0.083,0.0085,0.0]},{"code":"ro","name":"Romania","region":"Europe","aspect":1.5,"img":"flags/ro.png","colors":[{"name":"Red","pct":32.5,"hex":"#ef233c"},{"name":"Blue","pct":32.5,"hex":"#1d4ed8"},{"name":"Yellow","pct":32.5,"hex":"#facc15"}],"swatches":["#082878","#c81828","#f8d818","#f8c818"],"hist":[0.0,0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.3375,0.0,0.0,0.0,0.0,0.0,0.325,0.0,0.0]},{"code":"rs","name":"Serbia","region":"Europe","aspect":1.5,"img":"flags/rs.png","colors":[{"name":"White","pct":36.4,"hex":"#f8f9fa"},{"name":"Red","pct":31.7,"hex":"#ef233c"},{"name":"Blue","pct":23.7,"hex":"#1d4ed8"},{"name":"Orange","pct":5.3,"hex":"#f97316"}],"swatches":["#f8f8f8","#c83838","#084878","#e8e8e8"],"hist":[0.0,0.236,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0158,0.0,0.0,0.002,0.0085,0.0,0.0,0.0,0.0,0.3013,0.0015,0.0,0.0312,0.0395,0.0005,0.0,0.003,0.3608]},{"code":"ru","name":"Russia","region":"Europe","aspect":1.5,"img":"flags/ru.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"White","pct":32.0,"hex":"#f8f9fa"},{"name":"Blue","pct":32.0,"hex":"#1d4ed8"}],"swatches":["#f8f8f8","#0838a8","#d82818","#a8b8e8"],"hist":[0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32]},{"code":"rw","name":"Rwanda","region":"Africa","aspect":1.5,"img":"flags/rw.png","colors":[{"name":"Light Blue","pct":48.5,"hex":"#38bdf8"},{"name":"Yellow","pct":25.0,"hex":"#facc15"},{"name":"Green","pct":24.5,"hex":"#10b981"}],"swatches":["#08a8e8","#286838","#f8d808","#18a8c8"],"hist":[0.0,0.0,0.0,0.24,0.003,0.4753,0.0,0.0057,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0055,0.0065,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.244,0.0,0.0]},{"code":"sa","name":"Saudi Arabia","region":"Asia","aspect":1.5,"img":"flags/sa.png","colors":[{"name":"Green","pct":94.9,"hex":"#10b981"},{"name":"Light Blue","pct":4.5,"hex":"#38bdf8"}],"swatches":["#085838","#488868","#387858","#689888"],"hist":[0.8445,0.0,0.0,0.049,0.0418,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0395,0.0,0.0,0.017,0.0032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005]},{"code":"sb","name":"Solomon Islands","region":"Oceania","aspect":2.0,"img":"flags/sb.png","colors":[{"name":"Green","pct":45.4,"hex":"#10b981"},{"name":"Blue","pct":40.4,"hex":"#1d4ed8"},{"name":"Yellow","pct":9.1,"hex":"#facc15"}],"swatches":["#285838","#0858b8","#f8d818","#f8c818"],"hist":[0.0,0.0,0.3752,0.4442,0.0073,0.0325,0.0,0.0,0.0,0.0,0.0,0.0,0.0115,0.007,0.0035,0.0,0.0,0.006,0.0,0.0,0.0,0.0022,0.0,0.0,0.0885,0.0,0.022]},{"code":"sc","name":"Seychelles","region":"Africa","aspect":2.0,"img":"flags/sc.png","colors":[{"name":"Red","pct":32.4,"hex":"#ef233c"},{"name":"Green","pct":16.9,"hex":"#10b981"},{"name":"Blue","pct":16.1,"hex":"#1d4ed8"},{"name":"White","pct":16.1,"hex":"#f8f9fa"}],"swatches":["#d82838","#082868","#087838","#f8f8f8"],"hist":[0.0,0.1625,0.0,0.1583,0.0065,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0027,0.003,0.0,0.0,0.0047,0.0025,0.3205,0.0015,0.0,0.0123,0.0083,0.0015,0.1565,0.0,0.1593]},{"code":"sd","name":"Sudan","region":"Africa","aspect":2.0,"img":"flags/sd.png","colors":[{"name":"Red","pct":29.9,"hex":"#ef233c"},{"name":"Black","pct":28.5,"hex":"#18181b"},{"name":"White","pct":23.0,"hex":"#f8f9fa"},{"name":"Green","pct":16.7,"hex":"#10b981"}],"swatches":["#080808","#d81838","#f8f8f8","#087828"],"hist":[0.2888,0.0,0.0,0.1608,0.002,0.0,0.0,0.0,0.0,0.003,0.0,0.0,0.0,0.0163,0.0,0.0,0.0,0.0,0.2838,0.0,0.0,0.0,0.0155,0.0,0.0,0.0,0.23]},{"code":"se","name":"Sweden","region":"Europe","aspect":1.6,"img":"flags/se.png","colors":[{"name":"Blue","pct":69.9,"hex":"#1d4ed8"},{"name":"Yellow","pct":30.0,"hex":"#facc15"}],"swatches":["#085898","#f8c808","#286888","#d8b818"],"hist":[0.0,0.646,0.0,0.0,0.054,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3,0.0,0.0]},{"code":"sg","name":"Singapore","region":"Asia","aspect":1.5,"img":"flags/sg.png","colors":[{"name":"White","pct":52.1,"hex":"#f8f9fa"},{"name":"Red","pct":46.5,"hex":"#ef233c"}],"swatches":["#f8f8f8","#e82838","#f8e8e8","#e84858"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.456,0.0063,0.0,0.0,0.013,0.001,0.0,0.0,0.5238]},{"code":"sh","name":"Saint Helena, Ascension and Tristan da Cunha","region":"Africa","aspect":2.0,"img":"flags/sh.png","colors":[{"name":"Blue","pct":75.7,"hex":"#1d4ed8"},{"name":"Red","pct":9.0,"hex":"#ef233c"},{"name":"White","pct":8.3,"hex":"#f8f9fa"}],"swatches":["#082868","#c81828","#c82848","#f8e8e8"],"hist":[0.0,0.7448,0.0,0.0,0.0055,0.0,0.0,0.0,0.0,0.0,0.0005,0.0,0.0055,0.0323,0.0105,0.0,0.0,0.0065,0.0805,0.007,0.0,0.001,0.012,0.0037,0.0145,0.0003,0.0755]},{"code":"si","name":"Slovenia","region":"Europe","aspect":2.0,"img":"flags/si.png","colors":[{"name":"Blue","pct":32.5,"hex":"#1d4ed8"},{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"White","pct":30.9,"hex":"#f8f9fa"}],"swatches":["#f80808","#0808f8","#f8f8f8","#a80858"],"hist":[0.0,0.0,0.3205,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0215,0.004,0.0,0.0005,0.0225,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0005,0.0,0.0,0.3105]},{"code":"sj","name":"Svalbard and Jan Mayen","region":"Europe","aspect":1.37,"img":"flags/sj.png","colors":[{"name":"Red","pct":62.6,"hex":"#ef233c"},{"name":"Blue","pct":19.8,"hex":"#1d4ed8"},{"name":"White","pct":16.5,"hex":"#f8f9fa"}],"swatches":["#b80828","#082858","#f8f8f8","#c8d8d8"],"hist":[0.0,0.186,0.0,0.0,0.011,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011,0.0,0.0,0.0,0.0,0.576,0.041,0.0,0.0,0.01,0.0,0.0,0.0,0.165]},{"code":"sk","name":"Slovakia","region":"Europe","aspect":1.5,"img":"flags/sk.png","colors":[{"name":"Red","pct":37.0,"hex":"#ef233c"},{"name":"White","pct":33.1,"hex":"#f8f9fa"},{"name":"Blue","pct":25.1,"hex":"#1d4ed8"}],"swatches":["#e81828","#f8f8f8","#0848a8","#982858"],"hist":[0.0,0.248,0.0,0.0,0.001,0.0045,0.0,0.0,0.0,0.017,0.0005,0.0,0.0,0.0,0.006,0.0,0.0,0.0155,0.3655,0.001,0.0,0.0,0.0225,0.0015,0.0,0.0,0.317]},{"code":"sl","name":"Sierra Leone","region":"Africa","aspect":1.5,"img":"flags/sl.png","colors":[{"name":"White","pct":32.0,"hex":"#f8f9fa"},{"name":"Blue","pct":32.0,"hex":"#1d4ed8"},{"name":"Green","pct":32.0,"hex":"#10b981"},{"name":"Light Blue","pct":4.0,"hex":"#38bdf8"}],"swatches":["#18b838","#f8f8f8","#0878c8","#68c878"],"hist":[0.0,0.0,0.0,0.0,0.0,0.32,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32]},{"code":"sm","name":"San Marino","region":"Europe","aspect":1.33,"img":"flags/sm.png","colors":[{"name":"Light Blue","pct":46.7,"hex":"#38bdf8"},{"name":"White","pct":44.6,"hex":"#f8f9fa"},{"name":"Green","pct":4.7,"hex":"#10b981"}],"swatches":["#f8f8f8","#58b8e8","#e8f8f8","#78b8e8"],"hist":[0.0008,0.0,0.0,0.007,0.0168,0.0018,0.0,0.0,0.0,0.0,0.0,0.0,0.0243,0.0442,0.0073,0.0,0.0018,0.4343,0.0,0.0,0.0,0.0118,0.0027,0.0,0.0,0.006,0.4415]},{"code":"sn","name":"Senegal","region":"Africa","aspect":1.5,"img":"flags/sn.png","colors":[{"name":"Green","pct":36.0,"hex":"#10b981"},{"name":"Red","pct":32.5,"hex":"#ef233c"},{"name":"Yellow","pct":30.3,"hex":"#facc15"}],"swatches":["#088838","#e81828","#f8e848","#58a848"],"hist":[0.0,0.0,0.0,0.342,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0075,0.0,0.0,0.325,0.0,0.0,0.0125,0.0,0.0,0.3005,0.0,0.0]},{"code":"so","name":"Somalia","region":"Africa","aspect":1.5,"img":"flags/so.png","colors":[{"name":"Light Blue","pct":95.8,"hex":"#38bdf8"},{"name":"White","pct":4.2,"hex":"#f8f9fa"}],"swatches":["#4888d8","#f8f8f8","#4898d8","#c8d8f8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.946,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005,0.0,0.0,0.0055,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0435]},{"code":"sr","name":"Suriname","region":"Americas","aspect":1.5,"img":"flags/sr.png","colors":[{"name":"Green","pct":40.0,"hex":"#10b981"},{"name":"Red","pct":37.0,"hex":"#ef233c"},{"name":"White","pct":20.0,"hex":"#f8f9fa"}],"swatches":["#387838","#b80828","#f8f8f8","#588858"],"hist":[0.0,0.0,0.0,0.36,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.369,0.0,0.0,0.0075,0.0,0.0,0.0235,0.0,0.2]},{"code":"ss","name":"South Sudan","region":"Africa","aspect":2.0,"img":"flags/ss.png","colors":[{"name":"Green","pct":26.2,"hex":"#10b981"},{"name":"Black","pct":25.9,"hex":"#18181b"},{"name":"Light Blue","pct":20.0,"hex":"#38bdf8"},{"name":"Red","pct":17.4,"hex":"#ef233c"}],"swatches":["#080808","#089848","#08b8f8","#e82828"],"hist":[0.2602,0.0005,0.0,0.242,0.0213,0.006,0.0,0.0,0.1898,0.0,0.001,0.0,0.0,0.0015,0.0,0.0,0.0055,0.001,0.174,0.0,0.0,0.0,0.0275,0.0,0.0115,0.0008,0.0575]},{"code":"st","name":"S\u00e3o Tom\u00e9 and Pr\u00edncipe","region":"Africa","aspect":2.0,"img":"flags/st.png","colors":[{"name":"Green","pct":52.0,"hex":"#10b981"},{"name":"Yellow","pct":31.1,"hex":"#facc15"},{"name":"Red","pct":12.2,"hex":"#ef233c"}],"swatches":["#089838","#f8d808","#e83848","#b8b818"],"hist":[0.028,0.0,0.0,0.5195,0.0,0.0,0.0,0.0,0.0,0.0035,0.0,0.0,0.0095,0.0,0.0,0.0,0.0,0.0,0.12,0.0,0.0,0.0105,0.0,0.0,0.309,0.0,0.0]},{"code":"sv","name":"El Salvador","region":"Americas","aspect":1.77,"img":"flags/sv.png","colors":[{"name":"Blue","pct":64.0,"hex":"#1d4ed8"},{"name":"White","pct":29.8,"hex":"#f8f9fa"},{"name":"Light Blue","pct":4.9,"hex":"#38bdf8"}],"swatches":["#0848a8","#f8f8f8","#5888c8","#f8f8d8"],"hist":[0.0,0.0,0.64,0.0027,0.0037,0.0003,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0035,0.0418,0.0,0.0045,0.0022,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0015,0.2998]},{"code":"sx","name":"Sint Maarten","region":"Americas","aspect":1.5,"img":"flags/sx.png","colors":[{"name":"Blue","pct":38.6,"hex":"#1d4ed8"},{"name":"Red","pct":37.8,"hex":"#ef233c"},{"name":"White","pct":16.4,"hex":"#f8f9fa"}],"swatches":["#b80808","#183888","#f8f8f8","#a81818"],"hist":[0.0,0.3837,0.0,0.0,0.0025,0.0,0.0,0.0,0.0,0.011,0.0,0.0,0.001,0.0032,0.0057,0.0,0.0003,0.0135,0.3755,0.0,0.0,0.0025,0.0132,0.0,0.0097,0.0132,0.1648]},{"code":"sy","name":"Syria","region":"Asia","aspect":1.5,"img":"flags/sy.png","colors":[{"name":"Green","pct":34.0,"hex":"#10b981"},{"name":"Black","pct":32.0,"hex":"#18181b"},{"name":"White","pct":26.9,"hex":"#f8f9fa"},{"name":"Red","pct":3.5,"hex":"#ef233c"}],"swatches":["#087838","#080808","#f8f8f8","#c81828"],"hist":[0.32,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.0,0.0,0.0,0.0,0.0315,0.0015,0.0,0.0,0.015,0.0015,0.0,0.0,0.2705]},{"code":"sz","name":"Eswatini (Swaziland)","region":"Africa","aspect":1.5,"img":"flags/sz.png","colors":[{"name":"Blue","pct":37.9,"hex":"#1d4ed8"},{"name":"Red","pct":29.3,"hex":"#ef233c"},{"name":"Yellow","pct":12.1,"hex":"#facc15"},{"name":"Orange","pct":5.8,"hex":"#f97316"}],"swatches":["#3858b8","#b80808","#f8d808","#4858b8"],"hist":[0.0558,0.0115,0.0,0.0,0.0037,0.36,0.0,0.0,0.0,0.022,0.005,0.0,0.0018,0.0227,0.0,0.0,0.0,0.0,0.2868,0.0,0.0,0.0948,0.0065,0.0,0.08,0.0,0.0495]},{"code":"tc","name":"Turks and Caicos Islands","region":"Americas","aspect":2.0,"img":"flags/tc.png","colors":[{"name":"Blue","pct":74.5,"hex":"#1d4ed8"},{"name":"Red","pct":9.0,"hex":"#ef233c"},{"name":"White","pct":7.7,"hex":"#f8f9fa"},{"name":"Yellow","pct":4.3,"hex":"#facc15"}],"swatches":["#082868","#c81828","#d82848","#f8e8e8"],"hist":[0.0,0.734,0.0,0.0063,0.0105,0.0,0.0,0.0,0.0,0.0022,0.0003,0.0,0.0015,0.0123,0.0063,0.0027,0.004,0.0065,0.0828,0.0047,0.0,0.0073,0.0112,0.002,0.0305,0.0047,0.0703]},{"code":"td","name":"Chad","region":"Africa","aspect":1.5,"img":"flags/td.png","colors":[{"name":"Red","pct":33.8,"hex":"#ef233c"},{"name":"Blue","pct":32.5,"hex":"#1d4ed8"},{"name":"Yellow","pct":32.5,"hex":"#facc15"}],"swatches":["#082868","#f8c808","#c80838","#585848"],"hist":[0.0,0.325,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0125,0.0,0.0,0.0,0.0,0.0,0.3375,0.0,0.0,0.0,0.0,0.0,0.325,0.0,0.0]},{"code":"tf","name":"French Southern and Antarctic Lands","region":"Antarctica","aspect":1.5,"img":"flags/tf.png","colors":[{"name":"Blue","pct":79.1,"hex":"#1d4ed8"},{"name":"White","pct":11.0,"hex":"#f8f9fa"},{"name":"Red","pct":8.1,"hex":"#ef233c"}],"swatches":["#284898","#f8f8f8","#e82828","#3858a8"],"hist":[0.0,0.7502,0.0,0.0,0.0312,0.0132,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0135,0.0,0.0,0.0008,0.0717,0.0027,0.0,0.0,0.0067,0.0,0.0,0.0,0.1098]},{"code":"tg","name":"Togo","region":"Africa","aspect":1.62,"img":"flags/tg.png","colors":[{"name":"Green","pct":45.0,"hex":"#10b981"},{"name":"Yellow","pct":32.6,"hex":"#facc15"},{"name":"Red","pct":19.1,"hex":"#ef233c"}],"swatches":["#086848","#f8c808","#d81838","#d8c808"],"hist":[0.0,0.0,0.0,0.45,0.0,0.0,0.0,0.0,0.0,0.005,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1893,0.0027,0.0,0.0,0.004,0.0005,0.325,0.0,0.0235]},{"code":"th","name":"Thailand","region":"Asia","aspect":1.5,"img":"flags/th.png","colors":[{"name":"Maroon","pct":64.0,"hex":"#9f1239"},{"name":"White","pct":36.0,"hex":"#f8f9fa"}],"swatches":["#a81838","#f8f8f8","#282848","#d8a8b8"],"hist":[0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.0,0.0,0.32]},{"code":"tj","name":"Tajikistan","region":"Asia","aspect":2.0,"img":"flags/tj.png","colors":[{"name":"White","pct":39.9,"hex":"#f8f9fa"},{"name":"Red","pct":28.0,"hex":"#ef233c"},{"name":"Green","pct":28.0,"hex":"#10b981"},{"name":"Yellow","pct":4.2,"hex":"#facc15"}],"swatches":["#f8f8f8","#c80808","#086808","#e8a8a8"],"hist":[0.0,0.0,0.0,0.28,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.28,0.0,0.0,0.0,0.0,0.0,0.004,0.0143,0.4218]},{"code":"tk","name":"Tokelau","region":"Oceania","aspect":2.0,"img":"flags/tk.png","colors":[{"name":"Blue","pct":68.4,"hex":"#1d4ed8"},{"name":"Yellow","pct":24.7,"hex":"#facc15"}],"swatches":["#082868","#f8d808","#f8c808","#585848"],"hist":[0.009,0.682,0.0,0.0053,0.0013,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.037,0.0022,0.0013,0.0,0.0,0.0005,0.0,0.0,0.0,0.0115,0.0,0.0,0.2462,0.0,0.0037]},{"code":"tl","name":"Timor-Leste","region":"Asia","aspect":2.0,"img":"flags/tl.png","colors":[{"name":"Red","pct":74.2,"hex":"#ef233c"},{"name":"Black","pct":14.0,"hex":"#18181b"},{"name":"Yellow","pct":6.9,"hex":"#facc15"}],"swatches":["#d82818","#080808","#f8c828","#f8f8f8"],"hist":[0.1455,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003,0.0,0.0,0.003,0.0047,0.0,0.0,0.0,0.0,0.745,0.0,0.0,0.0205,0.0003,0.0,0.065,0.0,0.013]},{"code":"tm","name":"Turkmenistan","region":"Asia","aspect":1.5,"img":"flags/tm.png","colors":[{"name":"Green","pct":83.0,"hex":"#10b981"},{"name":"Red","pct":6.8,"hex":"#ef233c"},{"name":"Orange","pct":6.1,"hex":"#f97316"}],"swatches":["#088838","#d82838","#187838","#d86828"],"hist":[0.0,0.0,0.0,0.8083,0.0063,0.0,0.0,0.0008,0.0,0.0112,0.0,0.0,0.0362,0.0027,0.0,0.0,0.0037,0.0025,0.0565,0.0,0.0,0.0512,0.014,0.0,0.0,0.0018,0.0047]},{"code":"tn","name":"Tunisia","region":"Africa","aspect":1.5,"img":"flags/tn.png","colors":[{"name":"Red","pct":89.8,"hex":"#ef233c"},{"name":"White","pct":8.0,"hex":"#f8f9fa"}],"swatches":["#e80818","#f8f8f8","#e81828","#f8e8e8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.893,0.003,0.0,0.0,0.0175,0.0018,0.0,0.0,0.0848]},{"code":"to","name":"Tonga","region":"Oceania","aspect":2.0,"img":"flags/to.png","colors":[{"name":"Red","pct":83.4,"hex":"#ef233c"},{"name":"White","pct":16.5,"hex":"#f8f9fa"}],"swatches":["#c80808","#f8f8f8","#f8d8d8","#c82828"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.824,0.0,0.0,0.0,0.011,0.0,0.0,0.0,0.165]},{"code":"tr","name":"Turkey","region":"Asia","aspect":1.5,"img":"flags/tr.png","colors":[{"name":"Red","pct":93.5,"hex":"#ef233c"},{"name":"White","pct":4.9,"hex":"#f8f9fa"}],"swatches":["#e80818","#f8f8f8","#e82838","#f8e8e8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9295,0.002,0.0,0.0,0.0155,0.0,0.0,0.0,0.053]},{"code":"tt","name":"Trinidad and Tobago","region":"Americas","aspect":1.67,"img":"flags/tt.png","colors":[{"name":"Red","pct":68.7,"hex":"#ef233c"},{"name":"Black","pct":19.5,"hex":"#18181b"},{"name":"White","pct":8.7,"hex":"#f8f9fa"}],"swatches":["#d81838","#080808","#f8f8f8","#f8e8e8"],"hist":[0.1975,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0135,0.0,0.0,0.0,0.0,0.6775,0.0055,0.0,0.0,0.0145,0.0025,0.0,0.0,0.089]},{"code":"tv","name":"Tuvalu","region":"Oceania","aspect":2.0,"img":"flags/tv.png","colors":[{"name":"Light Blue","pct":72.2,"hex":"#38bdf8"},{"name":"Red","pct":9.0,"hex":"#ef233c"},{"name":"White","pct":7.7,"hex":"#f8f9fa"},{"name":"Blue","pct":6.5,"hex":"#1d4ed8"}],"swatches":["#0898d8","#082868","#c81828","#c82848"],"hist":[0.0,0.056,0.0,0.0,0.0035,0.6957,0.0,0.0073,0.0003,0.0,0.0,0.0,0.0,0.009,0.0063,0.0032,0.0165,0.007,0.0795,0.0077,0.0,0.0,0.008,0.003,0.027,0.0,0.07]},{"code":"tw","name":"Taiwan","region":"Asia","aspect":1.5,"img":"flags/tw.png","colors":[{"name":"Red","pct":75.0,"hex":"#ef233c"},{"name":"Blue","pct":21.1,"hex":"#1d4ed8"}],"swatches":["#f80808","#080898","#280888","#d80818"],"hist":[0.0,0.206,0.0035,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.017,0.0,0.0,0.0,0.75,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0235]},{"code":"tz","name":"Tanzania","region":"Africa","aspect":1.5,"img":"flags/tz.png","colors":[{"name":"Light Blue","pct":29.1,"hex":"#38bdf8"},{"name":"Green","pct":28.9,"hex":"#10b981"},{"name":"Black","pct":28.2,"hex":"#18181b"},{"name":"Yellow","pct":10.8,"hex":"#facc15"}],"swatches":["#08a8d8","#18b838","#080808","#f8d818"],"hist":[0.2905,0.0,0.0,0.0,0.0,0.283,0.285,0.002,0.002,0.004,0.0,0.0,0.0125,0.0,0.0,0.0075,0.0073,0.0,0.0,0.0,0.0,0.0085,0.0,0.0,0.0978,0.0,0.0]},{"code":"ua","name":"Ukraine","region":"Europe","aspect":1.5,"img":"flags/ua.png","colors":[{"name":"Blue","pct":50.0,"hex":"#1d4ed8"},{"name":"Yellow","pct":50.0,"hex":"#facc15"}],"swatches":["#0858b8","#f8d808","#2868a8","#d8c818"],"hist":[0.0,0.0,0.0,0.0,0.02,0.48,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5,0.0,0.0]},{"code":"ug","name":"Uganda","region":"Africa","aspect":1.5,"img":"flags/ug.png","colors":[{"name":"Red","pct":29.6,"hex":"#ef233c"},{"name":"Black","pct":29.5,"hex":"#18181b"},{"name":"Yellow","pct":28.1,"hex":"#facc15"},{"name":"Orange","pct":8.3,"hex":"#f97316"}],"swatches":["#f8d808","#d80808","#080808","#a89808"],"hist":[0.2955,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0018,0.0,0.0,0.0398,0.0077,0.0,0.0,0.0,0.0,0.2958,0.0,0.0,0.0408,0.003,0.0,0.28,0.0003,0.0355]},{"code":"um","name":"United States Minor Outlying Islands","region":"Oceania","aspect":1.9,"img":"flags/um.png","colors":[{"name":"Red","pct":39.8,"hex":"#ef233c"},{"name":"White","pct":36.1,"hex":"#f8f9fa"},{"name":"Blue","pct":18.3,"hex":"#1d4ed8"},{"name":"Orange","pct":3.2,"hex":"#f97316"}],"swatches":["#b81848","#f8f8f8","#083868","#183868"],"hist":[0.0,0.163,0.0,0.0,0.016,0.0,0.0,0.0,0.0,0.0027,0.0003,0.0,0.0,0.017,0.0095,0.0,0.0,0.0015,0.3093,0.0558,0.0,0.0,0.064,0.0003,0.0,0.0,0.3608]},{"code":"us","name":"United States","region":"Americas","aspect":1.9,"img":"flags/us.png","colors":[{"name":"Red","pct":39.8,"hex":"#ef233c"},{"name":"White","pct":36.1,"hex":"#f8f9fa"},{"name":"Blue","pct":18.3,"hex":"#1d4ed8"},{"name":"Orange","pct":3.2,"hex":"#f97316"}],"swatches":["#b81848","#f8f8f8","#083868","#183868"],"hist":[0.0,0.163,0.0,0.0,0.016,0.0,0.0,0.0,0.0,0.0027,0.0003,0.0,0.0,0.017,0.0095,0.0,0.0,0.0015,0.3093,0.0558,0.0,0.0,0.064,0.0003,0.0,0.0,0.3608]},{"code":"uy","name":"Uruguay","region":"Americas","aspect":1.5,"img":"flags/uy.png","colors":[{"name":"White","pct":55.6,"hex":"#f8f9fa"},{"name":"Blue","pct":32.5,"hex":"#1d4ed8"},{"name":"Light Blue","pct":6.8,"hex":"#38bdf8"}],"swatches":["#f8f8f8","#0838a8","#a8b8e8","#88a8d8"],"hist":[0.0,0.26,0.065,0.0,0.0,0.0,0.0,0.0,0.0,0.002,0.0,0.0,0.0103,0.0,0.0325,0.0,0.0,0.035,0.0,0.0,0.0,0.0195,0.0065,0.0,0.007,0.0075,0.5547]},{"code":"uz","name":"Uzbekistan","region":"Asia","aspect":2.0,"img":"flags/uz.png","colors":[{"name":"White","pct":32.2,"hex":"#f8f9fa"},{"name":"Green","pct":32.0,"hex":"#10b981"},{"name":"Light Blue","pct":31.8,"hex":"#38bdf8"},{"name":"Red","pct":4.0,"hex":"#ef233c"}],"swatches":["#388838","#f8f8f8","#3888f8","#f8e8e8"],"hist":[0.0,0.0,0.0,0.32,0.0,0.3045,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0055,0.0,0.0,0.0065,0.02,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.3235]},{"code":"va","name":"Vatican City (Holy See)","region":"Europe","aspect":1.0,"img":"flags/va.png","colors":[{"name":"Yellow","pct":52.5,"hex":"#facc15"},{"name":"White","pct":43.5,"hex":"#f8f9fa"}],"swatches":["#f8f808","#f8f8f8","#f8f828","#f8f8d8"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005,0.0,0.0,0.0013,0.0138,0.0005,0.0,0.0,0.0,0.001,0.0,0.0,0.0115,0.0118,0.0,0.5048,0.0232,0.4273]},{"code":"vc","name":"Saint Vincent and the Grenadines","region":"Americas","aspect":1.5,"img":"flags/vc.png","colors":[{"name":"Yellow","pct":43.8,"hex":"#facc15"},{"name":"Green","pct":31.1,"hex":"#10b981"},{"name":"Blue","pct":25.0,"hex":"#1d4ed8"}],"swatches":["#f8d828","#087828","#082878","#288828"],"hist":[0.0,0.25,0.0,0.3055,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007,0.0,0.0,0.004,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.4335,0.0,0.0]},{"code":"ve","name":"Venezuela","region":"Americas","aspect":1.5,"img":"flags/ve.png","colors":[{"name":"Red","pct":32.0,"hex":"#ef233c"},{"name":"Yellow","pct":32.0,"hex":"#facc15"},{"name":"Blue","pct":30.5,"hex":"#1d4ed8"}],"swatches":["#f8c808","#c81828","#082878","#a89828"],"hist":[0.0,0.302,0.0,0.0,0.0035,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.02,0.0005,0.0075,0.0,0.0,0.0025,0.32,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.004]},{"code":"vg","name":"British Virgin Islands","region":"Americas","aspect":2.0,"img":"flags/vg.png","colors":[{"name":"Blue","pct":69.5,"hex":"#1d4ed8"},{"name":"Red","pct":9.0,"hex":"#ef233c"},{"name":"White","pct":8.8,"hex":"#f8f9fa"},{"name":"Green","pct":6.6,"hex":"#10b981"}],"swatches":["#082868","#c81828","#c82848","#f8e8e8"],"hist":[0.0047,0.68,0.0,0.05,0.0145,0.0,0.0,0.0,0.0,0.0015,0.0003,0.0,0.012,0.025,0.0063,0.0,0.0008,0.007,0.0805,0.007,0.0,0.0112,0.01,0.0037,0.0043,0.0005,0.0808]},{"code":"vi","name":"United States Virgin Islands","region":"Americas","aspect":1.5,"img":"flags/vi.png","colors":[{"name":"White","pct":68.7,"hex":"#f8f9fa"},{"name":"Yellow","pct":13.3,"hex":"#facc15"},{"name":"Orange","pct":5.8,"hex":"#f97316"},{"name":"Light Blue","pct":4.5,"hex":"#38bdf8"}],"swatches":["#f8f8f8","#c8a838","#e8b838","#d8a838"],"hist":[0.0015,0.024,0.0,0.0083,0.0105,0.0245,0.0,0.0,0.0,0.0138,0.002,0.0,0.0083,0.02,0.008,0.0,0.003,0.0045,0.0,0.0,0.0,0.0653,0.0127,0.0027,0.0875,0.0318,0.6717]},{"code":"vn","name":"Vietnam","region":"Asia","aspect":1.5,"img":"flags/vn.png","colors":[{"name":"Red","pct":92.5,"hex":"#ef233c"},{"name":"Yellow","pct":6.0,"hex":"#facc15"}],"swatches":["#f80808","#f8e808","#f8d808","#f89808"],"hist":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9275,0.0,0.0,0.0135,0.0,0.0,0.059,0.0,0.0]},{"code":"vu","name":"Vanuatu","region":"Oceania","aspect":1.67,"img":"flags/vu.png","colors":[{"name":"Green","pct":32.0,"hex":"#10b981"},{"name":"Red","pct":30.3,"hex":"#ef233c"},{"name":"Black","pct":21.5,"hex":"#18181b"},{"name":"Yellow","pct":7.2,"hex":"#facc15"}],"swatches":["#089848","#d81838","#080808","#f8c818"],"hist":[0.2647,0.0,0.0,0.306,0.0,0.0,0.0,0.0,0.0,0.023,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.303,0.0,0.0,0.0123,0.0,0.0,0.071,0.0,0.0]},{"code":"wf","name":"Wallis and Futuna","region":"Oceania","aspect":1.5,"img":"flags/wf.png","colors":[{"name":"Red","pct":85.2,"hex":"#ef233c"},{"name":"White","pct":8.1,"hex":"#f8f9fa"},{"name":"Blue","pct":5.5,"hex":"#1d4ed8"}],"swatches":["#c81828","#f8f8f8","#082858","#d85868"],"hist":[0.0475,0.0,0.0,0.0,0.0025,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005,0.0,0.0,0.0,0.0,0.8227,0.022,0.0,0.0,0.0182,0.0,0.0,0.0,0.082]},{"code":"ws","name":"Samoa","region":"Oceania","aspect":2.0,"img":"flags/ws.png","colors":[{"name":"Red","pct":75.0,"hex":"#ef233c"},{"name":"Blue","pct":23.9,"hex":"#1d4ed8"}],"swatches":["#c81828","#082878","#b81838","#182878"],"hist":[0.0,0.2355,0.0,0.0,0.004,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004,0.0,0.0,0.0013,0.75,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0053]},{"code":"xk","name":"Kosovo","region":"Europe","aspect":1.4,"img":"flags/xk.png","colors":[{"name":"Blue","pct":86.5,"hex":"#1d4ed8"},{"name":"Yellow","pct":8.5,"hex":"#facc15"}],"swatches":["#2848a8","#d8a858","#c8a858","#2858a8"],"hist":[0.0,0.8478,0.0,0.0,0.0063,0.0095,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0152,0.0105,0.0,0.0,0.003,0.0,0.0,0.0,0.0882,0.008,0.0,0.0,0.0,0.0115]},{"code":"ye","name":"Yemen","region":"Asia","aspect":1.5,"img":"flags/ye.png","colors":[{"name":"Red","pct":34.0,"hex":"#ef233c"},{"name":"White","pct":32.0,"hex":"#f8f9fa"},{"name":"Black","pct":32.0,"hex":"#18181b"}],"swatches":["#c81828","#f8f8f8","#080808","#d86878"],"hist":[0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.32]},{"code":"yt","name":"Mayotte","region":"Africa","aspect":1.5,"img":"flags/yt.png","colors":[{"name":"White","pct":84.0,"hex":"#f8f9fa"},{"name":"Red","pct":4.4,"hex":"#ef233c"},{"name":"Blue","pct":4.0,"hex":"#1d4ed8"},{"name":"Light Blue","pct":3.7,"hex":"#38bdf8"}],"swatches":["#f8f8f8","#d8d8d8","#b8b8b8","#c8c8c8"],"hist":[0.0,0.0387,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004,0.0,0.0,0.004,0.0377,0.0005,0.0,0.0,0.0,0.04,0.0,0.0,0.0103,0.0173,0.0,0.0,0.0057,0.8417]},{"code":"za","name":"South Africa","region":"Africa","aspect":1.5,"img":"flags/za.png","colors":[{"name":"Green","pct":30.8,"hex":"#10b981"},{"name":"Blue","pct":20.3,"hex":"#1d4ed8"},{"name":"Red","pct":20.1,"hex":"#ef233c"},{"name":"White","pct":11.1,"hex":"#f8f9fa"}],"swatches":["#087848","#081888","#e83838","#080808"],"hist":[0.087,0.2032,0.0,0.277,0.027,0.0,0.0,0.0,0.0,0.0025,0.0,0.0,0.0105,0.002,0.0118,0.0,0.0025,0.0043,0.2008,0.0,0.0,0.0092,0.0135,0.0,0.0395,0.0,0.1092]},{"code":"zm","name":"Zambia","region":"Africa","aspect":1.5,"img":"flags/zm.png","colors":[{"name":"Green","pct":74.3,"hex":"#10b981"},{"name":"Orange","pct":9.1,"hex":"#f97316"},{"name":"Red","pct":7.2,"hex":"#ef233c"},{"name":"Black","pct":7.2,"hex":"#18181b"}],"swatches":["#188808","#e87808","#080808","#d82818"],"hist":[0.072,0.0,0.0,0.7415,0.0,0.0,0.0,0.0,0.0,0.016,0.0,0.0,0.0115,0.0,0.0,0.0,0.0,0.0,0.072,0.0,0.0,0.087,0.0,0.0,0.0,0.0,0.0]},{"code":"zw","name":"Zimbabwe","region":"Africa","aspect":2.0,"img":"flags/zw.png","colors":[{"name":"Green","pct":26.4,"hex":"#10b981"},{"name":"Yellow","pct":24.4,"hex":"#facc15"},{"name":"Red","pct":22.1,"hex":"#ef233c"},{"name":"White","pct":12.9,"hex":"#f8f9fa"}],"swatches":["#086808","#d80808","#f8d808","#f8f8f8"],"hist":[0.0985,0.0,0.0,0.259,0.0,0.0,0.0,0.0,0.0,0.0312,0.0,0.0,0.0015,0.006,0.0,0.0,0.0,0.0,0.2195,0.0,0.0,0.0077,0.004,0.0,0.2407,0.0018,0.13]}]
+
+// Cosine similarity between two flags based on their 27-bin 3D RGB histogram + named color shares
+function colorSimilarity(flagA, flagB) {
+  const hA = flagA.hist;
+  const hB = flagB.hist;
+  let dot = 0, normA = 0, normB = 0;
+  for (let i = 0; i < hA.length; i++) {
+    dot += hA[i] * hB[i];
+    normA += hA[i] * hA[i];
+    normB += hB[i] * hB[i];
+  }
+  const histSim = (normA > 0 && normB > 0) ? (dot / (Math.sqrt(normA) * Math.sqrt(normB))) : 0;
+
+  // Also compare named color percentage vectors
+  const colorNames = ["Red", "White", "Blue", "Light Blue", "Green", "Yellow", "Black", "Orange", "Maroon"];
+  const mapA = new Map(flagA.colors.map(c => [c.name, c.pct]));
+  const mapB = new Map(flagB.colors.map(c => [c.name, c.pct]));
+  let cDot = 0, cNormA = 0, cNormB = 0;
+  for (const name of colorNames) {
+    const a = mapA.get(name) || 0;
+    const b = mapB.get(name) || 0;
+    cDot += a * b;
+    cNormA += a * a;
+    cNormB += b * b;
+  }
+  const namedSim = (cNormA > 0 && cNormB > 0) ? (cDot / (Math.sqrt(cNormA) * Math.sqrt(cNormB))) : 0;
+
+  // Blended color similarity (0 to 100%)
+  return Math.max(0, Math.min(100, (0.55 * histSim + 0.45 * namedSim) * 100));
+}
+
+mutable selectedCode = "us"
+mutable searchFilter = ""
+```
+
+<div id="sec-explorer" class="section-card">
+  <h2 class="section-title">🔍 Interactive Flag Explorer</h2>
+  <p class="section-desc">Search and select any country or territory below, or hit <strong>🎲 Random Country</strong> to jump somewhere new. All analysis sections update automatically!</p>
+
+```{ojs}
+explorerControls = {
+  const wrap = html`<div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:flex-end; background:rgba(11,4,24,0.6); padding:1.2rem; border-radius:16px; border:1px solid rgba(255,255,255,0.1);">
+    <div style="flex: 1 1 220px;">
+      <label style="display:block; font-size:0.82rem; font-weight:700; color:#00e5ff; text-transform:uppercase; margin-bottom:0.35rem;">🔎 Filter by Name or Region</label>
+      <input type="text" placeholder="Type e.g. Japan, Europe, br..." value="${searchFilter}"
+        style="width:100%; background:#14082a; color:#fff; border:1px solid rgba(0,229,255,0.4); border-radius:10px; padding:0.55rem 0.85rem; font-size:0.95rem;" />
+    </div>
+    <div style="flex: 2 1 280px;">
+      <label style="display:block; font-size:0.82rem; font-weight:700; color:#ff2a85; text-transform:uppercase; margin-bottom:0.35rem;">🌍 Select Country (${filteredCountries.length} matches)</label>
+      <select style="width:100%; background:#14082a; color:#fff; border:1px solid rgba(255,42,133,0.45); border-radius:10px; padding:0.55rem 0.85rem; font-size:0.95rem;">
+        ${filteredCountries.map(d => html`<option value="${d.code}" selected=${d.code === selectedFlag.code}>${d.name} (${d.region})</option>`)}
+      </select>
+    </div>
+    <div>
+      <button class="btn-neon" type="button">🎲 Random Country</button>
+    </div>
+  </div>`;
+
+  const inputEl = wrap.querySelector("input");
+  const selectEl = wrap.querySelector("select");
+  const btnEl = wrap.querySelector("button");
+
+  inputEl.addEventListener("input", (e) => {
+    mutable searchFilter = e.target.value;
+    const q = e.target.value.trim().toLowerCase();
+    const matches = flagsData.filter(d =>
+      d.name.toLowerCase().includes(q) ||
+      d.region.toLowerCase().includes(q) ||
+      d.code.toLowerCase().includes(q)
+    );
+    if (matches.length > 0 && !matches.some(m => m.code === mutable selectedCode)) {
+      mutable selectedCode = matches[0].code;
+    }
+  });
+
+  selectEl.addEventListener("change", (e) => {
+    mutable selectedCode = e.target.value;
+  });
+
+  btnEl.addEventListener("click", () => {
+    mutable searchFilter = "";
+    const pool = flagsData.filter(d => d.code !== mutable selectedCode);
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    mutable selectedCode = pick.code;
+  });
+
+  return wrap;
+}
+```
+
+```{ojs}
+//| output: false
+filteredCountries = {
+  const q = searchFilter.trim().toLowerCase();
+  if (!q) return flagsData;
+  const res = flagsData.filter(d =>
+    d.name.toLowerCase().includes(q) ||
+    d.region.toLowerCase().includes(q) ||
+    d.code.toLowerCase().includes(q)
+  );
+  return res.length > 0 ? res : flagsData;
+}
+
+selectedFlag = flagsData.find(d => d.code === selectedCode) || flagsData[0]
+```
+
+```{ojs}
+flagHeroCard = html`<div class="flag-showcase">
+  <div class="flag-img-frame">
+    <img src="${selectedFlag.img}" alt="Flag of ${selectedFlag.name}" />
+  </div>
+  <div>
+    <div style="margin-bottom: 0.5rem;">
+      <span class="badge-tag badge-region">📍 ${selectedFlag.region}</span>
+      <span class="badge-tag badge-code">ISO: ${selectedFlag.code.toUpperCase()}</span>
+      <span class="badge-tag" style="background:rgba(0,245,155,0.15); color:#00f59b; border:1px solid rgba(0,245,155,0.4);">📐 Aspect Ratio ${selectedFlag.aspect}:1</span>
+    </div>
+    <h3 style="font-family:'Space Grotesk',sans-serif; font-size:2.2rem; font-weight:800; margin:0.2rem 0 0.8rem 0; color:#fff;">
+      ${selectedFlag.name}
+    </h3>
+    <div style="font-size:0.88rem; text-transform:uppercase; letter-spacing:0.06em; color:#b8aed2; font-weight:700;">
+      🎨 Dominant Flag Color Distribution
+    </div>
+    <div class="color-bar-track">
+      ${selectedFlag.colors.map(c => html`<div title="${c.name}: ${c.pct}%" style="width:${c.pct}%; background:${c.hex}; height:100%;"></div>`)}
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:0.55rem; margin-bottom:1.1rem;">
+      ${selectedFlag.colors.map(c => html`
+        <span style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.35rem 0.75rem; border-radius:10px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); font-size:0.88rem; font-weight:600;">
+          <span style="width:12px; height:12px; border-radius:50%; background:${c.hex}; display:inline-block; border:1px solid rgba(255,255,255,0.5);"></span>
+          ${c.name}: <strong>${c.pct}%</strong>
+        </span>
+      `)}
+    </div>
+    <div style="font-size:0.84rem; color:#b8aed2;">
+      Extracted Hex Swatches:
+      ${selectedFlag.swatches.map(hx => html`<code style="margin-left:0.35rem; padding:0.15rem 0.45rem; border-radius:6px; background:${hx}; color:#fff; text-shadow:0 1px 3px #000; font-size:0.78rem;">${hx}</code>`)}
+    </div>
+  </div>
+</div>`
+```
+</div>
+
+<div id="sec-matchmaker" class="section-card">
+  <h2 class="section-title">💘 Flag Matchmaker</h2>
+  <p class="section-desc">
+    How similar is <strong>${selectedFlag.name}</strong>'s flag to the rest of the world?
+    Our algorithm computes a <strong>27-bin normalized 3D RGB color histogram</strong> plus <strong>named color proportions</strong> directly from each flag's pixels and measures <strong>Cosine Similarity</strong> (0% to 100%).
+    <em>Note: This algorithm compares actual pixel color distributions—not geometric layouts, stars/stripes, or cultural symbolism. Tip: Click any card below to inspect that flag!</em>
+  </p>
+
+```{ojs}
+//| output: false
+rankedMatches = {
+  const others = flagsData
+    .filter(d => d.code !== selectedFlag.code)
+    .map(d => ({
+      ...d,
+      similarity: colorSimilarity(selectedFlag, d)
+    }))
+    .sort((a, b) => b.similarity - a.similarity);
+
+  return {
+    mostSimilar: others.slice(0, 3),
+    mostDifferent: others.slice(-3).reverse()
+  };
+}
+```
+
+```{ojs}
+matchmakerView = {
+  const container = html`<div>
+    <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.3rem; color:#00f59b; margin:0.5rem 0;">
+      💚 TOP 3 MOST SIMILAR FLAGS TO ${selectedFlag.name.toUpperCase()}
+    </h3>
+    <div class="match-grid" id="sim-grid">
+      ${rankedMatches.mostSimilar.map((m, idx) => html`
+        <div class="mini-flag-card" data-code="${m.code}" style="cursor:pointer;">
+          <div style="font-size:0.78rem; color:#b8aed2; font-weight:700; margin-bottom:0.35rem;">#${idx + 1} CLOSEST MATCH</div>
+          <img src="${m.img}" alt="Flag of ${m.name}" />
+          <div style="font-weight:700; font-size:1.05rem; margin-bottom:0.25rem; color:#fff;">${m.name}</div>
+          <div style="font-size:0.82rem; color:#b8aed2; margin-bottom:0.55rem;">${m.region}</div>
+          <span class="sim-pill sim-high">${m.similarity.toFixed(1)}% Color Match</span>
+          <div class="color-bar-track" style="height:8px; margin:0.65rem 0 0 0;">
+            ${m.colors.map(c => html`<div style="width:${c.pct}%; background:${c.hex}; height:100%;"></div>`)}
+          </div>
+        </div>
+      `)}
+    </div>
+
+    <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.3rem; color:#ff2a85; margin:1.8rem 0 0.5rem 0;">
+      ⚡ TOP 3 MOST DIFFERENT FLAGS FROM ${selectedFlag.name.toUpperCase()}
+    </h3>
+    <div class="match-grid" id="diff-grid">
+      ${rankedMatches.mostDifferent.map((m, idx) => html`
+        <div class="mini-flag-card" data-code="${m.code}" style="cursor:pointer;">
+          <div style="font-size:0.78rem; color:#b8aed2; font-weight:700; margin-bottom:0.35rem;">#${idx + 1} MOST OPPOSITE</div>
+          <img src="${m.img}" alt="Flag of ${m.name}" />
+          <div style="font-weight:700; font-size:1.05rem; margin-bottom:0.25rem; color:#fff;">${m.name}</div>
+          <div style="font-size:0.82rem; color:#b8aed2; margin-bottom:0.55rem;">${m.region}</div>
+          <span class="sim-pill sim-low">${m.similarity.toFixed(1)}% Color Match</span>
+          <div class="color-bar-track" style="height:8px; margin:0.65rem 0 0 0;">
+            ${m.colors.map(c => html`<div style="width:${c.pct}%; background:${c.hex}; height:100%;"></div>`)}
+          </div>
+        </div>
+      `)}
+    </div>
+  </div>`;
+
+  container.querySelectorAll(".mini-flag-card").forEach(card => {
+    card.addEventListener("click", () => {
+      mutable searchFilter = "";
+      mutable selectedCode = card.getAttribute("data-code");
+      document.getElementById("sec-explorer")?.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  return container;
+}
+```
+</div>
+
+<div id="sec-game" class="section-card">
+  <h2 class="section-title">🎮 Guess the Flag!</h2>
+  <p class="section-desc">Test your world geography skills! Identify the mystery flag from four choices, build your streak, and challenge yourself.</p>
+
+```{ojs}
+//| output: false
+function makeQuestion(RoundSeed) {
+  const answerIdx = Math.floor(Math.random() * flagsData.length);
+  const correct = flagsData[answerIdx];
+  const distractors = [];
+  const used = new Set([correct.code]);
+  while (distractors.length < 3) {
+    const cand = flagsData[Math.floor(Math.random() * flagsData.length)];
+    if (!used.has(cand.code)) {
+      used.add(cand.code);
+      distractors.push(cand);
+    }
+  }
+  const options = [correct, ...distractors].sort(() => Math.random() - 0.5);
+  return { correct, options };
+}
+
+mutable quizRound = 1
+mutable quizScore = 0
+mutable quizTotal = 0
+mutable quizStreak = 0
+mutable quizBestStreak = 0
+mutable quizPicked = null
+quizState = makeQuestion(quizRound)
+```
+
+```{ojs}
+quizUI = {
+  const { correct, options } = quizState;
+  const answered = quizPicked !== null;
+  const isRight = quizPicked === correct.code;
+
+  const box = html`<div style="background:rgba(11,4,24,0.68); border:1px solid rgba(255,42,133,0.3); border-radius:20px; padding:1.6rem;">
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:0.8rem; margin-bottom:1.2rem;">
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <span class="badge-tag" style="background:rgba(0,245,155,0.16); color:#00f59b; border:1px solid rgba(0,245,155,0.4); font-size:0.92rem;">
+          🏆 Score: ${quizScore} / ${quizTotal} (${quizTotal > 0 ? Math.round(100 * quizScore / quizTotal) : 0}%)
+        </span>
+        <span class="badge-tag" style="background:rgba(255,230,0,0.16); color:#ffe600; border:1px solid rgba(255,230,0,0.4); font-size:0.92rem;">
+          🔥 Streak: ${quizStreak} (Best: ${quizBestStreak})
+        </span>
+      </div>
+      <div style="display:flex; gap:0.6rem;">
+        <button class="btn-electric" id="next-flag-btn" type="button">Next Flag ➡️</button>
+      </div>
+    </div>
+
+    <div class="flag-showcase" style="margin-top:0;">
+      <div class="flag-img-frame" style="min-height:210px;">
+        <img src="${correct.img}" alt="Mystery Flag" style="max-height:200px;" />
+      </div>
+      <div>
+        <div style="font-weight:700; color:#b8aed2; margin-bottom:0.75rem; font-size:0.95rem;">
+          Which country or territory belongs to this flag?
+        </div>
+        <div style="display:grid; gap:0.65rem;">
+          ${options.map((opt, i) => {
+            let cls = "quiz-option";
+            if (answered) {
+              if (opt.code === correct.code) cls += " correct";
+              else if (opt.code === quizPicked) cls += " wrong";
+            }
+            return html`<button type="button" class="${cls}" data-opt="${opt.code}" ?disabled=${answered}>
+              <span style="color:#00e5ff; font-weight:800; margin-right:0.5rem;">${["A", "B", "C", "D"][i]}.</span>
+              ${opt.name}
+            </button>`;
+          })}
+        </div>
+
+        ${answered ? html`
+          <div style="margin-top:1rem; padding:0.85rem 1.1rem; border-radius:12px; font-weight:700;
+            background:${isRight ? 'rgba(0,245,155,0.18)' : 'rgba(255,42,133,0.2)'};
+            border:1px solid ${isRight ? '#00f59b' : '#ff2a85'};
+            color:${isRight ? '#00f59b' : '#ff85b3'};">
+            ${isRight
+              ? `🎉 Correct! That's the flag of ${correct.name} (${correct.region}).`
+              : `❌ Not quite! That flag belongs to ${correct.name} (${correct.region}).`}
+          </div>
+        ` : html`<div style="margin-top:0.85rem; font-size:0.86rem; color:#b8aed2;">💡 Click an option above to lock in your answer!</div>`}
+      </div>
+    </div>
+  </div>`;
+
+  box.querySelectorAll(".quiz-option").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (mutable quizPicked !== null) return;
+      const code = btn.getAttribute("data-opt");
+      mutable quizPicked = code;
+      mutable quizTotal = mutable quizTotal + 1;
+      if (code === correct.code) {
+        mutable quizScore = mutable quizScore + 1;
+        mutable quizStreak = mutable quizStreak + 1;
+        if (mutable quizStreak > mutable quizBestStreak) {
+          mutable quizBestStreak = mutable quizStreak;
+        }
+      } else {
+        mutable quizStreak = 0;
+      }
+    });
+  });
+
+  box.querySelector("#next-flag-btn").addEventListener("click", () => {
+    mutable quizPicked = null;
+    mutable quizRound = mutable quizRound + 1;
+  });
+
+  return box;
+}
+```
+</div>
+
+<div id="sec-stats" class="section-card">
+  <h2 class="section-title">📊 Global Flag Statistics</h2>
+  <p class="section-desc">Real pixel-level statistics calculated across all <strong>${flagsData.length}</strong> flags in the dataset. Filter by region to explore geographic color trends!</p>
+
+```{ojs}
+viewof statsRegion = Inputs.select(
+  ["All Regions", "Africa", "Americas", "Asia", "Europe", "Oceania", "Antarctica"],
+  { label: "🌐 Filter Statistics by Region:", value: "All Regions" }
+)
+```
+
+```{ojs}
+//| output: false
+regionFlags = statsRegion === "All Regions"
+  ? flagsData
+  : flagsData.filter(d => d.region === statsRegion)
+
+colorSummary = {
+  const colorMeta = [
+    { name: "Red", hex: "#ef233c" },
+    { name: "White", hex: "#f8f9fa" },
+    { name: "Blue", hex: "#1d4ed8" },
+    { name: "Yellow", hex: "#facc15" },
+    { name: "Green", hex: "#10b981" },
+    { name: "Black", hex: "#52525b" },
+    { name: "Light Blue", hex: "#38bdf8" },
+    { name: "Orange", hex: "#f97316" },
+    { name: "Maroon", hex: "#9f1239" }
+  ];
+
+  return colorMeta.map(cm => {
+    let flagCount = 0;
+    let totalPct = 0;
+    for (const f of regionFlags) {
+      const found = f.colors.find(c => c.name === cm.name);
+      if (found) {
+        flagCount += 1;
+        totalPct += found.pct;
+      }
+    }
+    return {
+      color: cm.name,
+      hex: cm.hex,
+      flagCount,
+      flagShare: regionFlags.length > 0 ? +(100 * flagCount / regionFlags.length).toFixed(1) : 0,
+      avgCoverage: regionFlags.length > 0 ? +(totalPct / regionFlags.length).toFixed(1) : 0
+    };
+  }).sort((a, b) => b.flagCount - a.flagCount);
+}
+
+comboSummary = {
+  const counts = new Map();
+  for (const f of regionFlags) {
+    const combo = f.colors.slice(0, 3).map(c => c.name).sort().join(" + ");
+    if (combo) counts.set(combo, (counts.get(combo) || 0) + 1);
+  }
+  return Array.from(counts.entries())
+    .map(([combo, count]) => ({ combo, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
+}
+
+avgColorsPerFlag = (regionFlags.reduce((acc, f) => acc + f.colors.length, 0) / Math.max(1, regionFlags.length)).toFixed(1)
+```
+
+```{ojs}
+statsKPIs = html`<div class="kpi-grid" style="margin-top:1rem;">
+  <div class="kpi-box">
+    <div class="kpi-num">${regionFlags.length}</div>
+    <div style="font-size:0.85rem; color:#b8aed2; font-weight:600;">Flags Analyzed (${statsRegion})</div>
+  </div>
+  <div class="kpi-box">
+    <div class="kpi-num">${colorSummary[0]?.color || "N/A"}</div>
+    <div style="font-size:0.85rem; color:#b8aed2; font-weight:600;">#1 Most Common Color (${colorSummary[0]?.flagShare}% of flags)</div>
+  </div>
+  <div class="kpi-box">
+    <div class="kpi-num">${avgColorsPerFlag}</div>
+    <div style="font-size:0.85rem; color:#b8aed2; font-weight:600;">Avg Main Colors per Flag</div>
+  </div>
+  <div class="kpi-box">
+    <div class="kpi-num" style="font-size:1.35rem; padding-top:0.4rem;">${comboSummary[0]?.combo || "N/A"}</div>
+    <div style="font-size:0.85rem; color:#b8aed2; font-weight:600;">Top Palette (${comboSummary[0]?.count || 0} flags)</div>
+  </div>
+</div>`
+```
+
+```{ojs}
+chartsGrid = html`<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:1.5rem; align-items:start;">
+  <div style="background:rgba(11,4,24,0.65); padding:1.2rem; border-radius:18px; border:1px solid rgba(255,255,255,0.1);">
+    <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1.1rem; margin:0 0 0.7rem 0; color:#00e5ff;">
+      🎨 Number of Flags Featuring Each Color (${statsRegion})
+    </h4>
+    ${Plot.plot({
+      height: 310,
+      marginLeft: 85,
+      marginRight: 45,
+      style: { background: "transparent", color: "#f8f7ff", fontSize: "12.5px" },
+      x: { label: "Number of flags (≥3% pixel area)", grid: true },
+      y: { label: null, domain: colorSummary.map(d => d.color) },
+      marks: [
+        Plot.barX(colorSummary, {
+          x: "flagCount",
+          y: "color",
+          fill: "hex",
+          rx: 6,
+          tip: true,
+          title: d => `${d.color}: ${d.flagCount} flags (${d.flagShare}% of ${statsRegion} flags, avg ${d.avgCoverage}% pixel area)`
+        }),
+        Plot.text(colorSummary, {
+          x: "flagCount",
+          y: "color",
+          text: d => `${d.flagCount} (${d.flagShare}%)`,
+          dx: 6,
+          textAnchor: "start",
+          fill: "#f8f7ff",
+          fontWeight: 700
+        })
+      ]
+    })}
+  </div>
+
+  <div style="background:rgba(11,4,24,0.65); padding:1.2rem; border-radius:18px; border:1px solid rgba(255,255,255,0.1);">
+    <h4 style="font-family:'Space Grotesk',sans-serif; font-size:1.1rem; margin:0 0 0.7rem 0; color:#ff2a85;">
+      🧩 Most Popular Color Combinations (${statsRegion})
+    </h4>
+    ${Plot.plot({
+      height: 310,
+      marginLeft: 165,
+      marginRight: 40,
+      style: { background: "transparent", color: "#f8f7ff", fontSize: "12px" },
+      x: { label: "Number of flags", grid: true },
+      y: { label: null, domain: comboSummary.map(d => d.combo) },
+      marks: [
+        Plot.barX(comboSummary, {
+          x: "count",
+          y: "combo",
+          fill: "#ff2a85",
+          rx: 6,
+          tip: true
+        }),
+        Plot.text(comboSummary, {
+          x: "count",
+          y: "combo",
+          text: d => `${d.count}`,
+          dx: 6,
+          textAnchor: "start",
+          fill: "#00f59b",
+          fontWeight: 700
+        })
+      ]
+    })}
+  </div>
+</div>`
+```
+</div>
+
+<div id="sec-surprise" class="section-card">
+  <h2 class="section-title">✨ Surprise Feature: Flag Color Personality & Palette Studio</h2>
+  <p class="section-desc">Pick your favorite color vibe to discover your <strong>Flag Color Personality</strong> and see which nations share your aesthetic—plus grab a live CSS design palette generated from <strong>${selectedFlag.name}</strong>!</p>
+
+```{ojs}
+viewof chosenVibe = Inputs.radio(
+  [
+    "🔥 Crimson Passion (Red)",
+    "🌊 Deep Ocean (Blue)",
+    "🌿 Emerald Harmony (Green)",
+    "☀️ Golden Optimist (Yellow)",
+    "❄️ Pure Minimalist (White)",
+    "⚡ Midnight Rebel (Black)",
+    "🦋 Sky Dreamer (Light Blue)"
+  ],
+  { label: "Choose Your Color Vibe:", value: "🔥 Crimson Passion (Red)" }
+)
+```
+
+```{ojs}
+personalityCard = {
+  const vibeMap = {
+    "🔥 Crimson Passion (Red)": {
+      color: "Red",
+      hex: "#ef233c",
+      persona: "Bold, energetic, and fearless! Red is the single most popular accent in vexillology, symbolizing courage, revolution, and vitality.",
+    },
+    "🌊 Deep Ocean (Blue)": {
+      color: "Blue",
+      hex: "#1d4ed8",
+      persona: "Calm, trustworthy, and expansive! Deep blue flags evoke maritime heritage, open skies, and steady diplomacy.",
+    },
+    "🌿 Emerald Harmony (Green)": {
+      color: "Green",
+      hex: "#10b981",
+      persona: "Grounded, lush, and growth-minded! Green dominates flags celebrating fertile landscapes, forests, and renewal.",
+    },
+    "☀️ Golden Optimist (Yellow)": {
+      color: "Yellow",
+      hex: "#facc15",
+      persona: "Radiant, warm, and visionary! Gold and yellow bring sunshine, mineral wealth, and optimism to flags around the globe.",
+    },
+    "❄️ Pure Minimalist (White)": {
+      color: "White",
+      hex: "#f8f9fa",
+      persona: "Clean, balanced, and peaceful! White provides crisp contrast and represents harmony and clarity.",
+    },
+    "⚡ Midnight Rebel (Black)": {
+      color: "Black",
+      hex: "#18181b",
+      persona: "Sleek, dramatic, and resilient! Black adds striking contrast and honors determination and heritage.",
+    },
+    "🦋 Sky Dreamer (Light Blue)": {
+      color: "Light Blue",
+      hex: "#38bdf8",
+      persona: "Breezy, creative, and serene! Light blue shines on island, coastal, and sunlit horizon flags.",
+    }
+  };
+
+  const info = vibeMap[chosenVibe];
+  const topVibeFlags = flagsData
+    .map(f => {
+      const c = f.colors.find(x => x.name === info.color);
+      return { ...f, colorPct: c ? c.pct : 0 };
+    })
+    .filter(f => f.colorPct > 0)
+    .sort((a, b) => b.colorPct - a.colorPct)
+    .slice(0, 6);
+
+  const cssGrad = `linear-gradient(135deg, ${selectedFlag.swatches.join(", ")})`;
+
+  const wrap = html`<div style="margin-top:1rem; display:grid; gap:1.5rem;">
+    <div style="background:rgba(11,4,24,0.75); border-left:5px solid ${info.hex}; padding:1.25rem 1.5rem; border-radius:16px;">
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:1.3rem; font-weight:800; color:#fff; margin-bottom:0.35rem;">
+        Your Vibe: ${chosenVibe}
+      </div>
+      <p style="margin:0 0 1rem 0; color:#b8aed2;">${info.persona}</p>
+      <div style="font-size:0.85rem; font-weight:700; color:#00e5ff; text-transform:uppercase; margin-bottom:0.65rem;">
+        🏆 Top 6 Flags Most Dominated by ${info.color} (Click any card to explore):
+      </div>
+      <div class="match-grid">
+        ${topVibeFlags.map(f => html`
+          <div class="mini-flag-card" data-code="${f.code}" style="cursor:pointer;">
+            <img src="${f.img}" alt="Flag of ${f.name}" />
+            <div style="font-weight:700; color:#fff;">${f.name}</div>
+            <div style="font-size:0.82rem; color:#00f59b; font-weight:700; margin-top:0.2rem;">
+              ${f.colorPct}% ${info.color}
+            </div>
+          </div>
+        `)}
+      </div>
+    </div>
+
+    <div style="background:rgba(11,4,24,0.75); border:1px solid rgba(0,229,255,0.28); padding:1.3rem 1.5rem; border-radius:16px;">
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:1.2rem; font-weight:800; color:#fff; margin-bottom:0.5rem;">
+        🎨 Live CSS Gradient & Swatch Generator — Inspired by ${selectedFlag.name}
+      </div>
+      <div style="height:64px; border-radius:14px; background:${cssGrad}; border:1px solid rgba(255,255,255,0.25); margin-bottom:0.75rem; box-shadow:0 8px 24px rgba(0,0,0,0.4);"></div>
+      <code style="display:block; padding:0.65rem 0.9rem; background:#070210; color:#00f59b; border-radius:10px; font-size:0.85rem; overflow-x:auto;">
+        background: ${cssGrad};
+      </code>
+    </div>
+  </div>`;
+
+  wrap.querySelectorAll(".mini-flag-card").forEach(card => {
+    card.addEventListener("click", () => {
+      mutable searchFilter = "";
+      mutable selectedCode = card.getAttribute("data-code");
+      document.getElementById("sec-explorer")?.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  return wrap;
+}
+```
+</div>
+
+<div id="sec-zip" class="section-card">
+  <h2 class="section-title">📦 Dataset & ZIP Archive Inspection</h2>
+  <p class="section-desc">Summary of what we discovered inside <code>https://flagcdn.com/w2560.zip</code>:</p>
+  <ul style="color:#d9d2e9; line-height:1.7; margin-bottom:0;">
+    <li><strong>Total Files & Format:</strong> Contains <strong>254 PNG image files</strong> (<code>.png</code>) and no subdirectories or non-image files (4.1 MB compressed ZIP, 5.4 MB uncompressed).</li>
+    <li><strong>Dimensions & Aspect Ratios:</strong> Every flag is rendered at a fixed width of <strong>2,560 pixels</strong> (<code>w2560</code>), while the height varies to preserve each flag's official aspect ratio—for example, United States (<code>us.png</code>) is <code>2560 × 1347</code>, Switzerland (<code>ch.png</code>) is a square <code>2560 × 2560</code>, and Nepal (<code>np.png</code>) is <code>2560 × 3121</code>.</li>
+    <li><strong>Naming Convention:</strong> Files use lowercase two-letter <strong>ISO 3166-1 alpha-2</strong> country and territory codes (250 codes from <code>ad.png</code> to <code>zw.png</code>), plus 4 hyphenated codes for the constituent nations of the United Kingdom (<code>gb-eng.png</code>, <code>gb-nir.png</code>, <code>gb-sct.png</code>, and <code>gb-wls.png</code>).</li>
+    <li><strong>Web Optimization:</strong> To keep this repository fast and GitHub Pages-friendly without committing multi-megabyte raw textures, all 254 PNGs were proportionally downsampled to <code>320px</code> width inside <code>flags/</code> after extracting their RGB color histograms.</li>
+  </ul>
+</div>
